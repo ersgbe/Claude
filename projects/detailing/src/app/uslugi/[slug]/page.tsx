@@ -6,6 +6,7 @@ import { crumbsLd } from "@/lib/seo";
 import { Head, JsonLd, Section, Tiles } from "@/components/ui";
 import { ServiceHero } from "@/components/ServiceHero";
 import { Includes } from "@/components/Includes";
+import { SignsCare } from "@/components/SignsCare";
 import { Packs } from "@/components/Packs";
 import { ClassPrices } from "@/components/ClassPrices";
 import { BeforeAfter } from "@/components/BeforeAfter";
@@ -55,8 +56,9 @@ export default async function Page({ params }: Props) {
       <JsonLd data={ld} />
       <JsonLd data={crumbsLd([{ name: "Услуги", path: "/uslugi" }, { name: s.title, path: `/uslugi/${s.slug}` }])} />
       <ServiceHero s={s} />
+      <SignsCare signs={s.signs} care={s.care} />
       <Includes items={s.includes} />
-      <Packs id="packages" items={s.packages} title="Варианты" text="Цены указаны для седана. Для кроссовера и внедорожника немного выше." slug={s.slug} />
+      <Packs id="packages" items={s.packages} title="Варианты" text="Цены указаны для седана. Для кроссовера и внедорожника немного выше." service={s.title} />
       <ClassPrices prices={s.prices} />
       <Section label="Результат" className="border-t border-line">
         <Head title="Результат" text="Потяните ползунок, чтобы сравнить до и после." />

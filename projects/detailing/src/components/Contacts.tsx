@@ -7,6 +7,7 @@ import { site } from "@/site.config";
 import { cn } from "@/lib/utils";
 import { button, Section } from "./ui";
 import { Chips } from "./Chips";
+import { OpenStatus } from "./OpenStatus";
 
 // Как добраться: фото студии, вкладки «От метро / На машине», адрес и маршрут.
 export function Contacts() {
@@ -22,6 +23,7 @@ export function Contacts() {
           <ul className="mt-5 space-y-2 text-[15px] text-fg/85">
             <li className="flex gap-3"><MapPin size={18} className="mt-0.5 shrink-0 text-accent" aria-hidden />{site.address}</li>
             <li className="flex gap-3"><Clock size={18} className="mt-0.5 shrink-0 text-accent" aria-hidden />{site.hours}</li>
+            <li className="pl-[30px] text-[14px]"><OpenStatus /></li>
           </ul>
           <Chips id="dir" flush items={site.directions.map((d) => d.tab)} value={i} onChange={setI} label="Как добраться" className="mt-7" />
           <div id="dir-panel" role="tabpanel" aria-labelledby={`dir-tab-${i}`} className="mt-4 min-h-[72px]">

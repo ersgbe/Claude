@@ -1,9 +1,8 @@
 import { site } from "@/site.config";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
-import { Prices } from "@/components/Prices";
+import { Calculator } from "@/components/Calculator";
 import { Works } from "@/components/Works";
-import { Steps } from "@/components/Steps";
 import { Benefits } from "@/components/Benefits";
 import { Packs } from "@/components/Packs";
 import { CallbackBand } from "@/components/CallbackBand";
@@ -53,13 +52,12 @@ export default function Page() {
       <JsonLd data={jsonLd} />
       <Hero />
       <Services />
-      <Benefits />
-      <Prices />
-      <CallbackBand />
+      <Calculator />
       <Works limit={4} />
       <Packs id="bundles" items={site.bundles} title="Комплексы" text="Несколько услуг за один визит. Выходит дешевле, чем по отдельности." />
-      <Steps />
+      <Benefits />
       <Reviews />
+      <CallbackBand />
       <Booking />
       <Faq />
       <Contacts />

@@ -14,6 +14,8 @@ export async function POST(req: Request) {
     d.name && `Имя: ${clean(d.name)}`,
     d.service && `Услуга: ${clean(d.service)}`,
     d.car && `Авто: ${clean(d.car)}`,
+    d.when && `Когда удобно: ${clean(d.when)}`,
+    d.comment && `Расчёт: ${clean(d.comment)}`,
     `Форма: ${clean(d.source)}`,
   ].filter(Boolean).join("\n");
 

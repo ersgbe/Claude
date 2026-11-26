@@ -1,4 +1,6 @@
-import { PhoneCall } from "lucide-react";
+import { Camera, PhoneCall, Send } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { button } from "./ui";
 import { site } from "@/site.config";
 import { LeadForm } from "./LeadForm";
 
@@ -16,7 +18,16 @@ export function CallbackBand({ service }: { service?: string }) {
               <h2 className="mt-4 text-[24px] uppercase leading-[1.05] sm:text-[32px] md:text-[44px]">{site.callback.title}</h2>
               <p className="mt-3 max-w-[460px] text-[15px] leading-relaxed text-muted">{site.callback.text}</p>
             </div>
-            <LeadForm source="Блок «Перезвоним сами»" service={service} />
+            <div>
+              <LeadForm source="Блок «Перезвоним сами»" service={service} />
+              <div className="mt-5 border-t border-white/10 pt-5">
+                <p className="mb-3 text-[14px] leading-snug text-fg/80">{site.callback.photo}</p>
+                <div className="grid grid-cols-2 gap-2">
+                  <a href={`${site.whatsapp}?text=${encodeURIComponent(site.photoText + (service ? `(услуга: ${service}) ` : ""))}`} target="_blank" rel="noopener" className={cn(button({ variant: "ghost" }), "min-w-0 px-3")}><Camera size={17} aria-hidden /> WhatsApp</a>
+                  <a href={site.telegram} target="_blank" rel="noopener" className={cn(button({ variant: "ghost" }), "min-w-0 px-3")}><Send size={17} aria-hidden /> Telegram</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { button, Head, Section, Tiles } from "./ui";
 import { PickLink } from "./PickLink";
 
 // Пакеты или комплексы: 1 колонка на телефоне, 3 на компьютере. Выделенный пакет с полосой света.
-export function Packs({ items, title, text, slug, id }: { items: Pack[]; title: string; text?: string; slug?: string; id?: string }) {
+export function Packs({ items, title, text, service, id }: { items: Pack[]; title: string; text?: string; service?: string; id?: string }) {
   return (
     <Section id={id} label={title} className="border-t border-line">
       <Head title={title} text={text} />
@@ -26,7 +26,7 @@ export function Packs({ items, title, text, slug, id }: { items: Pack[]; title: 
                 ))}
               </ul>
               <div aria-hidden className="min-h-5 flex-1" />
-              <PickLink slug={slug} className={cn(button({ variant: p.featured ? "primary" : "ghost" }), "w-full")}>Записаться</PickLink>
+              <PickLink service={service} comment={`${service ? `${service}, вариант` : "Комплекс"} «${p.name}», от ${rub(p.price)}`} className={cn(button({ variant: p.featured ? "primary" : "ghost" }), "w-full")}>Записаться</PickLink>
             </li>
           ))}
         </Tiles>

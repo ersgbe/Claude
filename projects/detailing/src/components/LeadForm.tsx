@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useId, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Check, ChevronDown, Loader2 } from "lucide-react";
+import { Calculator, Check, ChevronDown, Loader2, X } from "lucide-react";
 import { site } from "@/site.config";
 import { cn } from "@/lib/utils";
-import { formatPhone, phoneOk, sendLead } from "@/lib/lead";
+import { formatPhone, phoneOk, sendLead, type Prefill } from "@/lib/lead";
 import { button } from "./ui";
 
 const field =
@@ -16,6 +16,10 @@ export function LeadForm({ full = false, source, service: preset }: { full?: boo
   const id = useId();
   const [phone, setPhone] = useState("");
   const [service, setService] = useState(preset ?? "");
+  const [comment, setComment] = useState("");
+  const [days, setDays] = useState<string[]>([]);
+  const [day, setDay] = useState(-1);
+  const [slot, setSlot] = useState(-1);
   const [state, setState] = useState<"idle" | "busy" | "done" | "error">("idle");
   const [err, setErr] = useState("");
 
@@ -26,8 +30,17 @@ export function LeadForm({ full = false, source, service: preset }: { full?: boo
       const s = site.services.find((x) => x.slug === (e as CustomEvent<string>).detail);
       if (s) setService(s.title);
     };
+    const pre = (e: Event) => {
+      const d = (e as CustomEvent<Prefill>).detail;
+      if (d.service !== undefined) setService(d.service);
+      if (d.comment) setComment(d.comment);
+    };
     window.addEventListener("select-service", on);
-    return () => window.removeEventListener("select-service", on);
+    window.addEventListener("prefill-lead", pre);
+    // Ближайшие 7 дней для записи (считаем в браузере, у сервера другое «сегодня»)
+    const fmt = new Intl.DateTimeFormat("ru-RU", { weekday: "short", day: "numeric", month: "short", timeZone: site.timezone });
+    setDays(Array.from({ length: 7 }, (_, i) => (i === 0 ? "Сегодня" : i === 1 ? "Завтра" : fmt.format(new Date(Date.now() + i * 864e5)))));
+    return () => { window.removeEventListener("select-service", on); window.removeEventListener("prefill-lead", pre); };
   }, [full]);
 
   async function submit(e: React.FormEvent) {
@@ -39,7 +52,8 @@ export function LeadForm({ full = false, source, service: preset }: { full?: boo
     }
     setErr("");
     setState("busy");
-    setState((await sendLead({ phone, service: service || undefined, source })) ? "done" : "error");
+    const when = day >= 0 ? `${days[day]}${slot >= 0 ? `, ${site.slots[slot]}` : ""}` : undefined;
+    setState((await sendLead({ phone, service: service || undefined, when, comment: comment || undefined, source })) ? "done" : "error");
   }
 
   return (
@@ -77,6 +91,13 @@ export function LeadForm({ full = false, source, service: preset }: { full?: boo
 
           {full && (
             <>
+              {comment && (
+                <div className="flex items-start gap-3 rounded-[14px] border border-accent/30 bg-accent/10 p-3 text-[14px] leading-snug">
+                  <Calculator size={18} className="mt-px shrink-0 text-accent" aria-hidden />
+                  <span className="min-w-0 flex-1"><span className="text-muted">Ваш расчёт: </span>{comment}</span>
+                  <button type="button" onClick={() => setComment("")} aria-label="Убрать расчёт" className="-m-1 grid h-8 w-8 shrink-0 place-items-center rounded-[10px] hover:bg-white/10"><X size={16} aria-hidden /></button>
+                </div>
+              )}
               <div>
                 <label htmlFor={`${id}-service`} className={label}>Услуга, если уже знаете</label>
                 <div className="relative">
@@ -87,6 +108,24 @@ export function LeadForm({ full = false, source, service: preset }: { full?: boo
                   <ChevronDown size={18} aria-hidden className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-muted" />
                 </div>
               </div>
+              <fieldset className="min-w-0">
+                <legend className={label}>Когда удобно приехать</legend>
+                <div className="no-bar -mx-1 flex gap-2 overflow-x-auto overscroll-x-contain px-1 pb-1">
+                  {(days.length ? days : ["Сегодня", "Завтра"]).map((d, i) => (
+                    <button key={d} type="button" aria-pressed={day === i} onClick={() => setDay(day === i ? -1 : i)}
+                      className={cn("h-11 shrink-0 rounded-[12px] px-4 text-[14px] font-medium transition", day === i ? "bg-accent text-accent-ink" : "bg-surface-2 hover:bg-[#2d2c28]")}>{d}</button>
+                  ))}
+                </div>
+                {day >= 0 && (
+                  <div className="mt-2 grid grid-cols-3 gap-2">
+                    {site.slots.map((t, i) => (
+                      <button key={t} type="button" aria-pressed={slot === i} onClick={() => setSlot(slot === i ? -1 : i)}
+                        className={cn("tnum h-11 whitespace-nowrap rounded-[12px] px-1 text-[12px] font-medium transition sm:text-[13px]", slot === i ? "bg-accent text-accent-ink" : "bg-surface-2 hover:bg-[#2d2c28]")}>{t}</button>
+                    ))}
+                  </div>
+                )}
+                <p className="mt-2 text-[12px] text-muted">Не обязательно. Администратор подтвердит время по телефону.</p>
+              </fieldset>
               <button type="submit" disabled={state === "busy"} className={cn(button({ size: "lg" }), "w-full")}>
                 {state === "busy" && <Loader2 className="animate-spin" size={18} aria-hidden />}
                 Записаться

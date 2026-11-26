@@ -1,4 +1,8 @@
-export type LeadInput = { phone: string; name?: string; service?: string; car?: string; source: string };
+export type LeadInput = { phone: string; name?: string; service?: string; car?: string; when?: string; comment?: string; source: string };
+
+// Событие: заполнить форму записи (из калькулятора, карточки пакета)
+export type Prefill = { service?: string; comment?: string };
+export const prefillLead = (d: Prefill) => window.dispatchEvent(new CustomEvent("prefill-lead", { detail: d }));
 
 export async function sendLead(data: LeadInput): Promise<boolean> {
   try {

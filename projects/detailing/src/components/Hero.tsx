@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { Clock, MapPin } from "lucide-react";
 import { site } from "@/site.config";
 import { LeadForm } from "./LeadForm";
+import { OpenStatus } from "./OpenStatus";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 const rise = (d: number) => ({
@@ -41,10 +42,12 @@ export function Hero() {
           <motion.div {...rise(0.6)}>
             <p className="mb-4 max-w-[440px] text-[15px] leading-relaxed text-fg/80 md:text-[17px]">{site.hero.lead}</p>
             <LeadForm source="Первый экран" />
+            <OpenStatus className="mt-3 text-[13px] text-fg/70 md:hidden" />
           </motion.div>
           <motion.ul {...rise(0.75)} className="hidden space-y-2 justify-self-end text-[15px] text-fg/75 md:block">
             <li className="flex items-center gap-3"><MapPin size={17} className="text-accent" aria-hidden />{site.address}</li>
             <li className="flex items-center gap-3"><Clock size={17} className="text-accent" aria-hidden />{site.hours}</li>
+            <li><OpenStatus /></li>
           </motion.ul>
         </div>
       </div>

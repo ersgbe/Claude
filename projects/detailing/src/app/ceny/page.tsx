@@ -4,7 +4,7 @@ import { crumbsLd } from "@/lib/seo";
 import { Head, JsonLd, PageHero, Section, Tiles } from "@/components/ui";
 import { Prices } from "@/components/Prices";
 import { Packs } from "@/components/Packs";
-import { CallbackBand } from "@/components/CallbackBand";
+import { Calculator } from "@/components/Calculator";
 import { Faq } from "@/components/Faq";
 import { Booking } from "@/components/Booking";
 
@@ -26,6 +26,7 @@ export default function Page() {
       <JsonLd data={crumbsLd([{ name: "Цены", path: "/ceny" }])} />
       <PageHero crumbs={[{ label: "Главная", href: "/" }, { label: "Цены" }]} title="Цены" text={site.pricesNote} />
       <Prices full />
+      <Calculator />
       <Section label="Из чего складывается цена" className="border-t border-line">
         <Head title="Из чего цена" />
         <div className="wrap">
@@ -43,7 +44,6 @@ export default function Page() {
         </div>
       </Section>
       <Packs id="bundles" items={site.bundles} title="Комплексы" text="Несколько услуг за один визит. Выходит дешевле, чем по отдельности." />
-      <CallbackBand />
       <Faq items={site.faq.slice(0, 3)} />
       <Booking />
     </>
