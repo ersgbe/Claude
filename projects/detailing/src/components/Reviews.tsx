@@ -9,9 +9,9 @@ export function Reviews() {
       <Head title="Отзывы" />
       <Rail label="Отзывы, листайте вправо">
         {site.reviews.map((r) => (
-          <figure key={r.name} data-card className="flex w-[82vw] max-w-[400px] shrink-0 snap-start flex-col justify-between rounded-[20px] border border-line bg-surface p-6 md:w-[400px] md:p-8">
-            <blockquote className="text-[17px] leading-relaxed md:text-[19px]">
-              <span aria-hidden className="mb-3 block font-display text-[40px] leading-none text-accent">“</span>
+          <figure key={r.name} className="flex flex-col justify-between rounded-[20px] border border-line bg-surface p-5 md:p-7">
+            <blockquote className="text-[16px] leading-relaxed md:text-[17px]">
+              <span aria-hidden className="mb-2 block font-display text-[36px] leading-none text-accent">“</span>
               {r.text}
             </blockquote>
             <figcaption className="mt-8 flex items-center justify-between gap-3 border-t border-line pt-4 text-[14px]">

@@ -5,7 +5,7 @@ import { button, Section } from "./ui";
 import { LeadForm } from "./LeadForm";
 
 // Запись: слева быстрые способы связаться, справа короткая форма.
-export function Booking() {
+export function Booking({ service }: { service?: string }) {
   return (
     <Section id="booking" label="Запись" className="border-t border-line">
       <div className="wrap grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
@@ -25,7 +25,7 @@ export function Booking() {
         <div className="relative overflow-hidden rounded-[24px] border border-line bg-surface p-5 sm:p-8">
           <div aria-hidden className="beam absolute inset-x-8 top-0 opacity-80" />
           <h3 className="mb-5 text-[20px]">Заявка на запись</h3>
-          <LeadForm full source="Форма записи" />
+          <LeadForm full source={service ? `Запись: ${service}` : "Форма записи"} service={service} />
         </div>
       </div>
     </Section>

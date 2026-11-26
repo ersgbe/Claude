@@ -1,16 +1,17 @@
 import { site } from "@/site.config";
-import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
 import { Prices } from "@/components/Prices";
 import { Works } from "@/components/Works";
 import { Steps } from "@/components/Steps";
+import { Benefits } from "@/components/Benefits";
+import { Packs } from "@/components/Packs";
+import { CallbackBand } from "@/components/CallbackBand";
+import { JsonLd } from "@/components/ui";
 import { Reviews } from "@/components/Reviews";
 import { Faq } from "@/components/Faq";
 import { Booking } from "@/components/Booking";
 import { Contacts } from "@/components/Contacts";
-import { Footer } from "@/components/Footer";
-import { MobileBar } from "@/components/MobileBar";
 
 // JSON-LD: автомойка/детейлинг, услуги и вопросы. Берётся из site.config.ts.
 const jsonLd = {
@@ -34,7 +35,7 @@ const jsonLd = {
         itemListElement: site.services.map((s) => ({
           "@type": "Offer",
           priceSpecification: { "@type": "PriceSpecification", minPrice: s.from, priceCurrency: "RUB" },
-          itemOffered: { "@type": "Service", name: s.title, description: s.text },
+          itemOffered: { "@type": "Service", name: s.title, description: s.text, url: `${site.url}/uslugi/${s.slug}` },
         })),
       },
     },
@@ -49,21 +50,19 @@ const jsonLd = {
 export default function Page() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
-      <Header />
-      <main>
-        <Hero />
-        <Services />
-        <Prices />
-        <Works />
-        <Steps />
-        <Reviews />
-        <Booking />
-        <Faq />
-        <Contacts />
-      </main>
-      <Footer />
-      <MobileBar />
+      <JsonLd data={jsonLd} />
+      <Hero />
+      <Services />
+      <Benefits />
+      <Prices />
+      <CallbackBand />
+      <Works limit={4} />
+      <Packs id="bundles" items={site.bundles} title="Комплексы" text="Несколько услуг за один визит. Выходит дешевле, чем по отдельности." />
+      <Steps />
+      <Reviews />
+      <Booking />
+      <Faq />
+      <Contacts />
     </>
   );
 }

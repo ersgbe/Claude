@@ -12,10 +12,10 @@ const field =
 const label = "mb-2 block text-[13px] text-fg/70";
 
 // Короткая заявка. Главное поле одно: телефон. В полной версии можно выбрать услугу.
-export function LeadForm({ full = false, source }: { full?: boolean; source: string }) {
+export function LeadForm({ full = false, source, service: preset }: { full?: boolean; source: string; service?: string }) {
   const id = useId();
   const [phone, setPhone] = useState("");
-  const [service, setService] = useState("");
+  const [service, setService] = useState(preset ?? "");
   const [state, setState] = useState<"idle" | "busy" | "done" | "error">("idle");
   const [err, setErr] = useState("");
 

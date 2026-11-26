@@ -28,8 +28,8 @@ export function Hero() {
 
       <div className="wrap pb-[104px] pt-28 md:pb-14">
         <h1 className="uppercase">
-          <motion.span {...rise(0.15)} className="block text-[clamp(36px,11vw,120px)] leading-[0.98] tracking-[-0.04em]">{site.hero.title}</motion.span>
-          <motion.span {...rise(0.3)} className="mt-3 block text-[13px] font-medium tracking-[0.02em] text-accent sm:text-[15px] md:mt-5 md:text-[18px]">{site.hero.titleSmall}</motion.span>
+          <span style={{ animationDelay: "0.15s" }} className="rise block text-[clamp(36px,11vw,120px)] leading-[0.98] tracking-[-0.04em]">{site.hero.title}</span>
+          <span style={{ animationDelay: "0.3s" }} className="rise mt-3 block text-[13px] font-medium tracking-[0.02em] text-accent sm:text-[15px] md:mt-5 md:text-[18px]">{site.hero.titleSmall}</span>
         </h1>
 
         <motion.div

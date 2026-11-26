@@ -6,7 +6,7 @@ D = os.path.join(os.path.dirname(__file__), "..", "public", "images")
 NEED = {"hero": (2400, 1350), "hero-m": (1080, 1920), "before": (1600, 1000), "after": (1600, 1000),
         "studio": (1600, 1000), "og": (1200, 630)}
 for n in ("wash", "polish", "ceramic", "interior", "film", "presale"): NEED["service-" + n] = (1000, 1250)
-for i in range(1, 6): NEED[f"work-{i}"] = (1000, 1250)
+for i in range(1, 7): NEED[f"work-{i}"] = (1000, 1250)
 bad = 0
 for n, (w, h) in NEED.items():
     p = os.path.join(D, n + ".jpg")

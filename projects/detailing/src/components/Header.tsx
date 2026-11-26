@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, Phone, X } from "lucide-react";
 import { site } from "@/site.config";
@@ -10,6 +12,9 @@ import { button, tile } from "./ui";
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const path = usePathname();
+  useEffect(() => setOpen(false), [path]);
+  const active = (href: string) => path === href || path.startsWith(href + "/");
 
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 40);
@@ -29,12 +34,12 @@ export function Header() {
     <header className="fixed inset-x-0 top-0 z-50">
       <div aria-hidden className={cn("absolute inset-0 -z-10 border-b border-line bg-bg/80 backdrop-blur-xl transition-opacity duration-300", scrolled || open ? "opacity-100" : "opacity-0")} />
       <div className="wrap flex h-[72px] items-center justify-between gap-2">
-        <a href="#top" onClick={() => setOpen(false)} className={cn(tile, "h-12 px-4")} aria-label={`${site.name}, наверх`}>
+        <Link href="/" onClick={() => setOpen(false)} className={cn(tile, "h-12 px-4")} aria-label={`${site.name}, на главную`}>
           <span className="font-display text-[15px] font-semibold tracking-[0.08em]">{site.name}</span>
-        </a>
+        </Link>
         <nav aria-label="Разделы" className={cn(tile, "hidden h-12 grid-flow-col gap-1 px-2 lg:grid")}>
           {site.nav.map((n) => (
-            <a key={n.href} href={n.href} className="grid h-10 place-items-center rounded-[10px] px-4 text-[14px] text-fg/70 transition hover:bg-white/6 hover:text-fg">{n.label}</a>
+            <Link key={n.href} href={n.href} aria-current={active(n.href) ? "page" : undefined} className={cn("grid h-10 place-items-center rounded-[10px] px-4 text-[14px] transition hover:bg-white/6 hover:text-fg", active(n.href) ? "bg-white/8 text-fg" : "text-fg/70")}>{n.label}</Link>
           ))}
         </nav>
         <div className="flex items-center gap-2">
@@ -59,13 +64,14 @@ export function Header() {
           >
             <nav aria-label="Меню" className="wrap flex flex-1 flex-col justify-center">
               {site.nav.map((n, i) => (
-                <motion.a
-                  key={n.href} href={n.href} onClick={() => setOpen(false)}
-                  initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.04 * i, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex h-16 items-center border-b border-line font-display text-[26px] uppercase tracking-[-0.02em]"
+                <motion.div key={n.href} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.04 * i, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}>
+                <Link
+                  href={n.href} onClick={() => setOpen(false)} aria-current={active(n.href) ? "page" : undefined}
+                  className={cn("flex h-16 items-center justify-between border-b border-line font-display text-[26px] uppercase tracking-[-0.02em]", active(n.href) && "text-accent")}
                 >
                   {n.label}
-                </motion.a>
+                </Link>
+                </motion.div>
               ))}
             </nav>
             <div className="wrap pb-[max(20px,env(safe-area-inset-bottom))]">

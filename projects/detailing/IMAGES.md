@@ -4,7 +4,7 @@
 
 ## Что сказать ChatGPT / Codex (скопируй целиком)
 
-> Открой репозиторий ersgbe/Claude, папку `projects/detailing`. Прочитай `IMAGES.md`. Сгенерируй все 17 картинок из таблицы по промптам. К каждому промпту добавляй блок «Общий стиль» из этого файла. Сохрани в `projects/detailing/public/images/` под точными именами и размерами из таблицы, формат JPG, до 500 КБ. Работай в ветке `codex/images-detailing`, трогай только эту папку. После работы запусти `python3 projects/detailing/scripts/check-images.py` и пришли результат.
+> Открой репозиторий ersgbe/Claude, папку `projects/detailing`. Прочитай `IMAGES.md`. Сгенерируй все 18 картинок из таблицы по промптам. К каждому промпту добавляй блок «Общий стиль» из этого файла. Сохрани в `projects/detailing/public/images/` под точными именами и размерами из таблицы, формат JPG, до 500 КБ. Работай в ветке `codex/images-detailing`, трогай только эту папку. После работы запусти `python3 projects/detailing/scripts/check-images.py` и пришли результат.
 
 ## Общий стиль (добавлять к каждому промпту)
 Premium automotive photography in a dark graphite detailing studio. Soft cinematic light from long overhead LED softboxes, warm cream highlights (#ffe0a3) on glossy paint, deep blacks, low-key, high contrast, crisp detail, realistic, shot on a full-frame camera. One consistent color grade across all images: near-black shadows, warm cream highlights, no saturated colors. No text, no logos, no badges, no watermarks, no license plates, no recognizable faces.
@@ -23,14 +23,14 @@ Premium automotive photography in a dark graphite detailing studio. Soft cinemat
 | service-presale.jpg | Карточка «Перед продажей» | 1000×1250 | 4:5 |
 | before.jpg | Ползунок «до» | 1600×1000 | 16:10 |
 | after.jpg | Ползунок «после» | 1600×1000 | 16:10 |
-| work-1.jpg … work-5.jpg | Лента «Работы», 5 фото | 1000×1250 | 4:5 |
+| work-1.jpg … work-6.jpg | Сетка «Работы», 6 фото | 1000×1250 | 4:5 |
 | studio.jpg | Блок «Как добраться» | 1600×1000 | 16:10 |
 | og.jpg | Превью ссылки в мессенджерах | 1200×630 | 1.91:1 |
 
 Как кадрируется на сайте:
 - hero.jpg: слева и снизу ложится тёмный градиент с заголовком. Машина в правой половине.
 - hero-m.jpg: нижние 45% кадра закрыты текстом и формой. Машина в верхней половине.
-- Карточки услуг: снизу на 40% высоты лежит текст на тёмном градиенте. Главный предмет в верхней половине.
+- Карточки услуг (главная, раздел «Услуги», «Другие услуги»; на странице услуги это же фото крупно справа, а на телефоне сверху в 4:3): снизу на 40% высоты лежит текст на тёмном градиенте. Главный предмет в верхней половине.
 - before.jpg и after.jpg: на телефоне кадр обрезается до 5:4 по центру. Машину ставь в центр.
 - studio.jpg: на телефоне 4:3 по центру.
 
@@ -80,6 +80,9 @@ Vertical shot of a headlight and front bumper of a dark car, water beading on th
 
 ### work-5.jpg
 Vertical interior detail: steering wheel and dashboard of a clean premium car, soft cream light. 4:5.
+
+### work-6.jpg
+Vertical close-up of glossy black paint with fresh water beads after ceramic coating, a long warm amber reflection crossing the panel. 4:5.
 
 ### studio.jpg
 Entrance to a small modern detailing studio in the evening: a dark building facade with one open garage gate glowing with warm light, a clean car visible inside, wet asphalt reflecting the light, two small wall lamps. No signs, no text. 16:10.

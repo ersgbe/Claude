@@ -85,3 +85,14 @@ html { scrollbar-color: #3a3833 var(--color-bg); }
 details > summary { list-style: none; }
 details > summary::-webkit-details-marker { display: none; }
 details[open] .faq-plus { transform: rotate(45deg); }
+
+/* Сетка плашек: колонок --n, неполный последний ряд и одиночная плашка встают по центру */
+@layer components {
+  .tiles { --g: 12px; --n: 2; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--g); }
+  @media (min-width: 768px) { .tiles { --g: 16px; } }
+  .tiles > * { flex: 0 0 calc((100% - (var(--n) - 1) * var(--g)) / var(--n)); min-width: 0; }
+}
+
+/* Появление заголовка без JS: работает сразу из HTML, поисковик видит текст */
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise 0.9s var(--ease-out-expo) both; }
