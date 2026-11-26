@@ -1,54 +1,86 @@
 # Картинки для сайта: detailing
 
-Папка: `projects/detailing/public/images/`. Файлы заменяют заглушки с теми же именами. Вёрстку не менять.
+Папка: `projects/detailing/public/images/`. Файлы заменяют заглушки с теми же именами и размерами. Вёрстку не менять.
 
-| Файл | Где на сайте | Размер, px | Пропорции | Формат |
-|------|--------------|-----------|-----------|--------|
-| hero.jpg | Первый экран, фон | 2400×1350 | 16:9 | JPG |
-| service-wash.jpg | Карточка «Мойка и уход» | 1200×900 | 4:3 | JPG |
-| service-polish.jpg | Карточка «Полировка кузова» | 1200×900 | 4:3 | JPG |
-| service-ceramic.jpg | Карточка «Керамическое покрытие» | 1200×900 | 4:3 | JPG |
-| service-interior.jpg | Карточка «Химчистка салона» | 1200×900 | 4:3 | JPG |
-| service-film.jpg | Карточка «Защитная плёнка» | 1200×900 | 4:3 | JPG |
-| service-presale.jpg | Карточка «Подготовка к продаже» | 1200×900 | 4:3 | JPG |
-| before.jpg | Ползунок «до» | 1600×1000 | 16:10 | JPG |
-| after.jpg | Ползунок «после» | 1600×1000 | 16:10 | JPG |
-| og.jpg | Превью ссылки в мессенджерах | 1200×630 | 1.91:1 | JPG |
+## Что сказать ChatGPT / Codex (скопируй целиком)
+
+> Открой репозиторий ersgbe/Claude, папку `projects/detailing`. Прочитай `IMAGES.md`. Сгенерируй все 16 картинок из таблицы по промптам, добавляя к каждому «Общий стиль» из этого файла. Сохрани в `projects/detailing/public/images/` под точными именами и размерами из таблицы. Работай в ветке `codex/images-detailing`, трогай только эту папку. После работы запусти `python3 projects/detailing/scripts/check-images.py` и пришли результат.
+
+## Общий стиль (добавлять к каждому промпту)
+Premium automotive photography, dark graphite studio, soft cinematic light, warm cream accent light (#ffe0a3), deep blacks, high contrast, sharp, realistic, no text, no logos, no watermarks, no license plates, no people faces.
+
+## Таблица
+
+| Файл | Где на сайте | Размер, px | Пропорции |
+|------|--------------|-----------|-----------|
+| hero.jpg | Первый экран, компьютер | 2400×1350 | 16:9 |
+| hero-m.jpg | Первый экран, телефон | 1200×1500 | 4:5 |
+| service-wash.jpg | Карточка «Мойка и уход» | 1200×900 | 4:3 |
+| service-polish.jpg | Карточка «Полировка кузова» | 1200×900 | 4:3 |
+| service-ceramic.jpg | Карточка «Керамика» | 1200×900 | 4:3 |
+| service-interior.jpg | Карточка «Химчистка салона» | 1200×900 | 4:3 |
+| service-film.jpg | Карточка «Защитная плёнка» | 1200×900 | 4:3 |
+| service-presale.jpg | Карточка «Подготовка к продаже» | 1200×900 | 4:3 |
+| before.jpg | Ползунок, «до» | 1600×1000 | 16:10 |
+| after.jpg | Ползунок, «после» | 1600×1000 | 16:10 |
+| work-1.jpg ... work-5.jpg | Лента «Работы» (5 фото) | 1000×1250 | 4:5 |
+| og.jpg | Превью ссылки в мессенджерах | 1200×630 | 1.91:1 |
+
+Карточки услуг на сайте обрезаются до 4:5 (портрет) по центру. Главный предмет ставь в центр кадра.
 
 ## Промпты
 
 ### hero.jpg
-Cinematic photo of a black premium sports sedan inside a clean dark detailing studio, low three-quarter front angle, car placed in the right 60 percent of the frame, left 40 percent is dark empty space for text. Soft long LED strip lights reflecting on perfectly polished paint, wet glossy floor, deep graphite background with subtle warm cream accent glow. Moody, high contrast, sharp, realistic, 16:9. No text, no logos, no license plate.
+Black premium sports sedan in a dark detailing studio, low three-quarter front angle. Car in the right 55 percent of the frame, left 45 percent is dark empty space for a headline. Long soft LED strip lights reflect on perfectly polished paint, glossy wet floor. 16:9.
+
+### hero-m.jpg
+Same scene as hero.jpg but vertical 4:5. Car in the upper 55 percent of the frame, centered. The lower 45 percent is dark floor with soft reflection, empty, for text. 4:5.
 
 ### service-wash.jpg
-Close-up photo of a dark car hood covered with thick white foam, water droplets, a hand in a black glove holding a soft wash mitt, dark workshop background, cool blue rim light. Realistic, shallow depth of field, 4:3. No text, no logos.
+Close-up of a dark car hood covered with thick white foam, water droplets, a gloved hand with a soft wash mitt, cool blue rim light. Shallow depth of field. 4:3.
 
 ### service-polish.jpg
-Detailer polishing a dark grey car door with a rotary polisher, half of the panel shows swirl scratches, half is mirror-like and reflects warm studio lights. Close-up, dark graphite background, warm amber highlights. Realistic, 4:3. No text, no logos.
+Detailer polishing a dark grey car door with a rotary polisher. Half of the panel shows swirl scratches, half is a mirror finish reflecting warm studio lights. Close-up. 4:3.
 
 ### service-ceramic.jpg
-Macro photo of a black car fender with water beading into perfect round droplets on ceramic coating, a hand applying coating with a suede applicator, warm cream accent light reflection. Dark, glossy, realistic, 4:3. No text, no logos.
+Macro of a black car fender with water beading into round droplets on ceramic coating, a gloved hand with a suede applicator, cream accent light reflection. 4:3.
 
 ### service-interior.jpg
-Clean luxury car interior with beige leather seats and dark dashboard, a detailer in black gloves steam-cleaning the seat, soft warm interior light, very tidy. Realistic, 4:3. No text, no logos.
+Clean luxury car interior with beige leather seats and a dark dashboard, a detailer in black gloves steam-cleaning the seat, soft warm light. Very tidy. 4:3.
 
 ### service-film.jpg
-Detailer applying transparent paint protection film on a car hood with a squeegee, glossy dark car, bright workshop light with teal tint, visible film edge. Realistic, 4:3. No text, no logos.
+Detailer applying transparent paint protection film on a glossy dark car hood with a squeegee, visible film edge, teal-tinted workshop light. 4:3.
 
 ### service-presale.jpg
-Freshly detailed silver family crossover parked in a bright clean studio, spotless paint and wheels, warm neutral light, three-quarter front view. Realistic, 4:3. No text, no logos, no license plate.
+Freshly detailed silver family crossover in a bright clean studio, spotless paint and wheels, warm neutral light, three-quarter front view. 4:3.
 
 ### before.jpg
-Rear three-quarter view of a dark grey car with dull faded paint, fine swirl scratches and water spots, flat grey daylight, dirty and tired look. Same car, same angle, same framing and crop as after.jpg. Realistic, 16:10. No text, no logos, no license plate.
+Rear three-quarter view of a dark grey car with dull faded paint, fine swirl scratches and water spots, flat grey daylight. Same car, angle, framing and crop as after.jpg. 16:10.
 
 ### after.jpg
-The exact same dark grey car, same rear three-quarter angle, same framing and crop as before.jpg, now deep glossy mirror-like paint after polishing and ceramic coating, sharp reflections, subtle warm cream accent light. Realistic, 16:10. No text, no logos, no license plate.
+The exact same dark grey car, same rear three-quarter angle, framing and crop as before.jpg, now with deep mirror-like paint after polishing and ceramic coating, sharp reflections, subtle cream accent light. 16:10.
+
+### work-1.jpg
+Vertical close-up of a black car door handle and shoulder line with perfect reflections of a studio light strip. 4:5.
+
+### work-2.jpg
+Vertical shot of an alloy wheel and fender of a dark car, clean, glossy, teal rim light. 4:5.
+
+### work-3.jpg
+Vertical shot of a car roof and rear window with a long warm amber reflection, dark studio. 4:5.
+
+### work-4.jpg
+Vertical shot of a front bumper and headlight of a dark car with blue-tinted light, water beading on paint. 4:5.
+
+### work-5.jpg
+Vertical interior detail: steering wheel and dashboard of a clean luxury car, soft cream light. 4:5.
 
 ### og.jpg
-Wide cinematic photo of a black car in a dark studio with a long warm cream light reflection along the body, large empty dark area on the left for a title. Realistic, 1200×630. No text, no logos, no license plate.
+Wide cinematic photo of a black car in a dark studio with a long warm cream light reflection along the body, large empty dark area on the left. 1200×630.
 
-## Общие требования
-- Единый стиль: тёмная графитовая студия, акцент тёплый кремовый (#ffe0a3), мягкий контрастный свет.
-- Без текста, водяных знаков, логотипов и номерных знаков.
-- before.jpg и after.jpg: одна машина, один ракурс, одинаковый кадр.
+## Требования
+- Один стиль и одна палитра на всех фото.
+- Без текста, водяных знаков, логотипов, номеров и лиц.
+- before.jpg и after.jpg: одна машина, один ракурс, один кадр.
 - JPG до 500 КБ, названия строго как в таблице.
+- Проверка: `python3 projects/detailing/scripts/check-images.py`.
