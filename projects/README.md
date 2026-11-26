@@ -4,3 +4,4 @@
 
 - `hello` — стартовый сайт (Vercel-проект `claude-hello`).
 - `detailing` — шаблон сайта для детейлинга и автомойки (данные в `src/site.config.ts`).
+  Vercel-проект: `detailing-template` (Root Directory `projects/detailing`).
