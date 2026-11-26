@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 import { MobileBar } from "@/components/MobileBar";
 import "./globals.css";
 
-const title = `${site.tagline} ${site.cityIn}: полировка, керамика, химчистка | ${site.name}`;
+const title = `Детейлинг ${site.cityIn}: полировка, керамика, химчистка | ${site.name}`;
 const description = `${site.name}, ${site.tagline.toLowerCase()} ${site.cityIn}. Полировка, керамика, химчистка салона, защитная плёнка. Цену называем до начала работ. Перезвоним за 10 минут: ${site.phone}.`;
 
 export const metadata: Metadata = {

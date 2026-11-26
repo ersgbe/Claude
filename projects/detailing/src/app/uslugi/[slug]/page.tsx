@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = `${s.title} ${site.cityIn}: цена от ${rub(s.from)}`;
   return {
     title,
-    description: `${s.intro} Цена от ${rub(s.from)}, срок ${s.time}. ${site.name}, ${site.address}.`,
+    description: `${s.intro} Цена от ${rub(s.from)}, срок ${s.time}.`.slice(0, 165),
     alternates: { canonical: `/uslugi/${s.slug}` },
     openGraph: { title, images: [{ url: s.image }] },
   };

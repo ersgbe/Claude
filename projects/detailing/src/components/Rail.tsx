@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 // Горизонтальная лента для телефона. На компьютере (desktopGrid) превращается в сетку.
 // Карточки прилипают к краю, следующая выглядывает, снизу полоса прогресса.
-// Одна карточка — без ленты, по центру.
+// Если карточка одна, ленты нет, она стоит по центру.
 export function Rail({ label, children, desktopGrid = "md:grid-cols-2 lg:grid-cols-4" }: { label: string; children: React.ReactNode; desktopGrid?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [m, setM] = useState({ pos: 0, size: 100, can: false });

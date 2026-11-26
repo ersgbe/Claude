@@ -1,7 +1,7 @@
 import { AlertCircle, Droplets } from "lucide-react";
 import { Section } from "./ui";
 
-// Страница услуги: «Когда пора» помогает понять, нужна ли услуга; «Уход после» — как сохранить результат.
+// Страница услуги: «Когда пора» помогает понять, нужна ли услуга, а «Уход после» объясняет, как сохранить результат.
 export function SignsCare({ signs, care }: { signs: string[]; care: string[] }) {
   return (
     <Section label="Когда пора и уход после" className="border-t border-line">

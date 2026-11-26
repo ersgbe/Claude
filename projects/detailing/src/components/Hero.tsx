@@ -40,7 +40,7 @@ export function Hero() {
 
         <div className="grid gap-6 md:grid-cols-[minmax(0,560px)_1fr] md:items-end md:gap-16">
           <motion.div {...rise(0.6)}>
-            <p className="mb-4 max-w-[440px] text-[15px] leading-relaxed text-fg/80 md:text-[17px]">{site.hero.lead}</p>
+            <p className="mb-4 max-w-[440px] text-[15px] leading-relaxed text-fg/80 max-sm:hidden md:text-[17px]">{site.hero.lead}</p>
             <LeadForm source="Первый экран" />
             <OpenStatus className="mt-3 text-[13px] text-fg/70 md:hidden" />
           </motion.div>

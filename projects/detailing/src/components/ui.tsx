@@ -43,7 +43,7 @@ export function Head({ title, text, aside, className }: { title: string; text?: 
   );
 }
 
-// Сетка плашек. cols — классы с числом колонок, например "[--n:2] lg:[--n:3]".
+// Сетка плашек. cols задаёт число колонок через классы, например "[--n:2] lg:[--n:3]".
 export function Tiles({ cols = "[--n:2] lg:[--n:3]", className, children }: { cols?: string; className?: string; children: React.ReactNode }) {
   return <ul className={cn("tiles", cols, className)}>{children}</ul>;
 }
