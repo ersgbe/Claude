@@ -46,6 +46,42 @@ def hide_plate(im, box):
     return im
 
 
+import numpy as np
+
+CREAM = np.array([255, 224, 163], dtype=np.float32)
+
+
+def grade(im, seed=1, beam=0.16, sat=0.74, dark=1.14):
+    """Единый стиль сайта: графитовые тени, кремовые света, приглушённый цвет, виньетка
+    и полосы кремового света (как в первых версиях сайта). beam=0 отключает полосы."""
+    a = np.asarray(im.convert("RGB"), dtype=np.float32) / 255.0
+    h, w = a.shape[:2]
+    lum = (a * [0.299, 0.587, 0.114]).sum(axis=2, keepdims=True)
+    a = lum + (a - lum) * sat                           # приглушаем цвет
+    a = np.clip(a, 0, 1) ** dark                         # глубже тени
+    a = np.clip((a - 0.5) * 1.1 + 0.5, 0, 1)             # чуть контрастнее
+    lum = (a * [0.299, 0.587, 0.114]).sum(axis=2, keepdims=True)
+    hi = np.clip((lum - 0.45) / 0.55, 0, 1) ** 1.6       # света тонируем кремовым
+    a = a * (1 - 0.30 * hi) + (CREAM / 255.0) * lum * 0.30 * hi * 1.15
+    sh = np.clip(1 - lum / 0.35, 0, 1)                   # тени тянем к тёплому графиту
+    a = a * (1 - 0.35 * sh) + np.array([0.035, 0.034, 0.030]) * 0.35 * sh
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    r = np.sqrt(((xx - w / 2) / (w / 2)) ** 2 + ((yy - h / 2) / (h / 2)) ** 2)
+    a *= (1 - 0.34 * np.clip(r - 0.45, 0, 1) ** 1.4)[..., None]   # виньетка
+    if beam:
+        rnd = random.Random(seed)
+        x0 = rnd.uniform(0.25, 0.75) * w
+        ang = rnd.uniform(-0.38, -0.2)                   # наклон полосы
+        dist = (xx - x0) + (yy - h * 0.5) * ang
+        soft = np.exp(-(dist / (w * 0.07)) ** 2)         # широкое мягкое свечение
+        thin = np.exp(-(dist / (w * 0.0035)) ** 2)       # тонкая яркая линия
+        streak = (soft * 0.55 + thin * 0.9) * np.clip(1 - np.abs(yy / h - 0.5) * 1.15, 0, 1)
+        glow = streak[..., None] * (CREAM / 255.0)
+        a = 1 - (1 - a) * (1 - glow * beam)              # наложение «экран»
+    out = Image.fromarray((np.clip(a, 0, 1) * 255).astype(np.uint8))
+    return out
+
+
 def save(im, name, q=80):
     path = os.path.join(OUT, name + ".jpg")
     im.save(path, quality=q, optimize=True, progressive=True)
@@ -71,15 +107,16 @@ d = ImageDraw.Draw(fade)
 for x in range(0, 1400):
     d.line([(x, 0), (x, 1350)], fill=int(255 * min(1, max(0, (x - 640) / 650))))
 canvas = Image.composite(canvas, Image.new("RGB", canvas.size, (9, 9, 8)), fade)
+canvas = grade(canvas, seed=3, beam=0.12, sat=0.8, dark=1.05)
 save(canvas, "hero")
 save(crop(canvas, 1200, 630, 0.62, 0.55), "og")
 
 # --- Первый экран, телефон: машина в верхней половине
 W, H = bmw_tall.size
-save(crop(bmw_tall.crop((430, 1000, 430 + 1631, 3900)), 1080, 1920), "hero-m")
+save(grade(crop(bmw_tall.crop((430, 1000, 430 + 1631, 3900)), 1080, 1920), seed=4, beam=0.14), "hero-m")
 
 # --- До и после: одна машина, один кадр. «После» это фото, «до» то же фото с тусклой краской.
-base = crop(bmw_wide, 1600, 1000, 0.5, 0.52)
+base = grade(crop(bmw_wide, 1600, 1000, 0.5, 0.52), seed=6, beam=0.10)
 after = ImageEnhance.Contrast(base).enhance(1.08)
 after = ImageEnhance.Color(after).enhance(1.06)
 after = after.filter(ImageFilter.UnsharpMask(radius=2, percent=70, threshold=2))
@@ -116,7 +153,7 @@ for name, pid, fx, fy, z in [
     ("work-5", 4870664, 0.5, 0.45, 1.0),
     ("work-6", 17641807, 0.5, 0.5, 1.0),
 ]:
-    save(crop(src(pid), 1000, 1250, fx, fy, z), name)
+    save(grade(crop(src(pid), 1000, 1250, fx, fy, z), seed=hash(name) % 997, beam=0.15), name)
 
 # --- Студия (блок «Как добраться»)
-save(crop(src(10126665), 1600, 1000, 0.5, 0.5), "studio")
+save(grade(crop(src(10126665), 1600, 1000, 0.5, 0.5), seed=9, beam=0.12, dark=1.3), "studio")

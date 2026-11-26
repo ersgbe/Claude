@@ -22,7 +22,7 @@ export const tile = "grid place-items-center rounded-[14px] bg-surface-2/80 back
 
 export function Section({ id, className, children, label }: { id?: string; className?: string; children: React.ReactNode; label?: string }) {
   return (
-    <section id={id} aria-label={label} className={cn("py-14 md:py-24", className)}>
+    <section id={id} aria-label={label} className={cn("py-10 md:py-24", className)}>
       {children}
     </section>
   );
@@ -31,7 +31,7 @@ export function Section({ id, className, children, label }: { id?: string; class
 // Заголовок блока: слева название, справа короткий текст или кнопка
 export function Head({ title, text, aside, className }: { title: string; text?: string; aside?: React.ReactNode; className?: string }) {
   return (
-    <div className={cn("wrap mb-6 flex flex-col gap-3 md:mb-10 md:flex-row md:items-end md:justify-between md:gap-10", className)}>
+    <div className={cn("wrap mb-5 flex flex-col gap-2 md:mb-10 md:flex-row md:items-end md:justify-between md:gap-10", className)}>
       <h2 className="text-[28px] sm:text-[36px] lg:text-[46px]">{title}</h2>
       {(text || aside) && (
         <div className="flex flex-col gap-4 md:max-w-[380px] md:items-end md:text-right">

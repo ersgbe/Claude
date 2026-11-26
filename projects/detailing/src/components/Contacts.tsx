@@ -15,7 +15,7 @@ export function Contacts() {
   return (
     <Section id="contacts" label="Как добраться" className="border-t border-line">
       <div className="wrap grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-center lg:gap-16">
-        <div className="zoom relative order-2 -mx-[var(--pad)] aspect-[4/3] lg:order-1 overflow-hidden bg-surface sm:mx-0 sm:rounded-[24px]">
+        <div className="zoom relative order-2 -mx-[var(--pad)] aspect-[16/9] sm:aspect-[4/3] lg:order-1 overflow-hidden bg-surface sm:mx-0 sm:rounded-[24px]">
           <Image src={site.studioImage} alt={`Вход в студию ${site.name}`} fill sizes="(min-width: 1024px) 680px, 100vw" className="object-cover" />
         </div>
         <div className="order-1 lg:order-2">

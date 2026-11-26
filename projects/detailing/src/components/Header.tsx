@@ -71,7 +71,7 @@ export function Header() {
             id="menu" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}
             className="fixed inset-x-0 bottom-0 top-[var(--hdr)] -z-10 flex flex-col bg-bg/97 backdrop-blur-xl lg:hidden"
           >
-            <nav aria-label="Меню" className="wrap flex flex-1 flex-col justify-center">
+            <nav aria-label="Меню" className="wrap flex flex-1 flex-col justify-start pt-4">
               {site.nav.map((n, i) => (
                 <motion.div key={n.href} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.04 * i, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}>
                 <Link

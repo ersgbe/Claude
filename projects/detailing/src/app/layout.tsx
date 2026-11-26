@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MobileBar } from "@/components/MobileBar";
 import { PwaProvider } from "@/components/Pwa";
+import { Reveal } from "@/components/Reveal";
 import { SPLASH } from "@/lib/splash";
 import "./globals.css";
 
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-[14px] focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-ink">К содержимому</a>
         <MotionConfig reducedMotion="user">
           <PwaProvider>
+            <Reveal />
             <Header />
             <main id="main">{children}</main>
             <Footer />

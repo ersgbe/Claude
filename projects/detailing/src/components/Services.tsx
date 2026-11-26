@@ -2,19 +2,21 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { site } from "@/site.config";
-import { Head, Section, Tiles } from "./ui";
+import Link from "next/link";
+import { Calculator } from "lucide-react";
+import { button, Head, Section, Tiles } from "./ui";
 import { Chips } from "./Chips";
 import { ServiceCard } from "./ServiceCard";
 
 // Услуги: вкладки-направления и сетка плашек. Неполный ряд встаёт по центру.
 export function Services({ head = true }: { head?: boolean }) {
   const [i, setI] = useState(0);
-  const cat = site.serviceCats[i];
+  const cat = head ? "Все" : site.serviceCats[i];
   const list = site.services.filter((s) => cat === "Все" || s.cat === cat);
   return (
     <Section id="services" label="Услуги" className={head ? undefined : "pt-8 md:pt-12"}>
-      {head && <Head title="Услуги" text="Нажмите на услугу: внутри цены по классу машины, что входит и как проходит работа." />}
-      <Chips id="svc" items={site.serviceCats} value={i} onChange={setI} label="Направление" className="mb-5 md:mb-8" />
+      {head && <Head title="Услуги" text="Нажмите на услугу: цены, что входит, сроки." />}
+      {!head && <Chips id="svc" items={site.serviceCats} value={i} onChange={setI} label="Направление" className="mb-5 md:mb-8" />}
       <div id="svc-panel" role="tabpanel" aria-labelledby={`svc-tab-${i}`} className="wrap">
         <Tiles cols="[--n:2] lg:[--n:3]">
           <AnimatePresence mode="popLayout" initial={false}>
@@ -29,6 +31,12 @@ export function Services({ head = true }: { head?: boolean }) {
             ))}
           </AnimatePresence>
         </Tiles>
+        {head && (
+          <div className="mt-5 grid gap-2 sm:grid-cols-2 md:mt-8">
+            <Link href="/uslugi#calc" className={button({ size: "lg" })}><Calculator size={18} aria-hidden /> Рассчитать цену</Link>
+            <a href="#booking" className={button({ variant: "ghost", size: "lg" })}>Записаться</a>
+          </div>
+        )}
       </div>
     </Section>
   );

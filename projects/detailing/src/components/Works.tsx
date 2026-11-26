@@ -15,13 +15,8 @@ export function Works({ limit, more = true }: { limit?: number; more?: boolean }
       <Head title={w.title} text={w.text} />
       <div className="wrap max-md:px-0">
         <BeforeAfter />
-        <ul className="mt-5 grid gap-x-8 gap-y-2 text-[14px] text-fg/75 sm:grid-cols-3 max-md:px-[var(--pad)] md:mt-8 md:text-[15px]">
-          {w.facts.map((f) => (
-            <li key={f} className="flex items-center gap-3"><span aria-hidden className="h-px w-5 shrink-0 bg-accent" />{f}</li>
-          ))}
-        </ul>
       </div>
-      <div className="wrap mt-10 md:mt-14">
+      <div className="wrap mt-6 md:mt-12">
         <Gallery photos={photos} cols={limit === 4 ? "[--n:2] md:[--n:4]" : "[--n:2] md:[--n:3]"} />
         {more && (
           <div className="mt-6 flex justify-center">

@@ -39,7 +39,7 @@ export function LeadForm({ full = false, source, service: preset }: { full?: boo
     window.addEventListener("prefill-lead", pre);
     // Ближайшие 7 дней для записи (считаем в браузере, у сервера другое «сегодня»)
     const fmt = new Intl.DateTimeFormat("ru-RU", { weekday: "short", day: "numeric", month: "short", timeZone: site.timezone });
-    setDays(Array.from({ length: 7 }, (_, i) => (i === 0 ? "Сегодня" : i === 1 ? "Завтра" : fmt.format(new Date(Date.now() + i * 864e5)))));
+    setDays(Array.from({ length: 6 }, (_, i) => (i === 0 ? "Сегодня" : i === 1 ? "Завтра" : fmt.format(new Date(Date.now() + i * 864e5)))));
     return () => { window.removeEventListener("select-service", on); window.removeEventListener("prefill-lead", pre); };
   }, [full]);
 
@@ -110,10 +110,10 @@ export function LeadForm({ full = false, source, service: preset }: { full?: boo
               </div>
               <fieldset className="min-w-0">
                 <legend className={label}>Когда удобно приехать</legend>
-                <div className="flex flex-wrap gap-2">
+                <div className="grid grid-cols-3 gap-2">
                   {(days.length ? days : ["Сегодня", "Завтра"]).map((d, i) => (
                     <button key={d} type="button" aria-pressed={day === i} onClick={() => setDay(day === i ? -1 : i)}
-                      className={cn("h-11 rounded-[12px] px-3.5 text-[14px] font-medium transition", day === i ? "bg-accent text-accent-ink" : "bg-surface-2 hover:bg-[#2d2c28]")}>{d}</button>
+                      className={cn("h-11 min-w-0 truncate rounded-[12px] px-1 text-[13px] font-medium transition", day === i ? "bg-accent text-accent-ink" : "bg-surface-2 hover:bg-[#2d2c28]")}>{d}</button>
                   ))}
                 </div>
                 {day >= 0 && (

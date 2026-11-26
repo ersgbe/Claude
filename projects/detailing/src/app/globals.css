@@ -110,3 +110,10 @@ html[data-app] { overscroll-behavior-y: none; }
 html[data-app] body { -webkit-touch-callout: none; }
 html[data-app] a, html[data-app] button { -webkit-user-select: none; user-select: none; }
 html[data-app] img { -webkit-user-drag: none; }
+
+/* Появление блоков при прокрутке (см. components/Reveal.tsx) */
+[data-rv="0"] { opacity: 0; transform: translateY(18px); }
+[data-rv="1"] { opacity: 1; transform: none; transition: opacity 0.7s var(--ease-out-expo) var(--rv-d, 0ms), transform 0.7s var(--ease-out-expo) var(--rv-d, 0ms); }
+
+/* Плавные нажатия: кнопки и плашки чуть проседают и возвращаются */
+button, a { -webkit-tap-highlight-color: transparent; }
