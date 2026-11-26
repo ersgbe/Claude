@@ -1,0 +1,49 @@
+@import "tailwindcss";
+@import "@fontsource-variable/manrope";
+@import "@fontsource-variable/unbounded";
+
+@theme {
+  --color-bg: #0a0b0d;
+  --color-surface: #121418;
+  --color-surface-2: #1a1d22;
+  --color-line: rgb(255 255 255 / 0.09);
+  --color-fg: #f3f4f6;
+  --color-muted: #9ba1ab;
+  --color-accent: #c8ff3d;
+  --color-accent-ink: #0b0d02;
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Unbounded Variable", "Manrope Variable", ui-sans-serif, sans-serif;
+  --radius-card: 20px;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 88px; background: var(--color-bg); }
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: calc(76px + env(safe-area-inset-bottom));
+}
+@media (min-width: 768px) { body { padding-bottom: 0; } }
+
+h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; line-height: 1.12; text-wrap: balance; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 6px; }
+::selection { background: var(--color-accent); color: var(--color-accent-ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* Ползунок «до и после» */
+.ba-range { -webkit-appearance: none; appearance: none; background: transparent; width: 100%; height: 100%; margin: 0; cursor: ew-resize; }
+.ba-range::-webkit-slider-thumb { -webkit-appearance: none; width: 44px; height: 44px; background: transparent; }
+.ba-range::-moz-range-thumb { width: 44px; height: 44px; background: transparent; border: 0; }
+.ba-range:focus-visible { outline: none; }
+.ba-range:focus-visible ~ .ba-handle { box-shadow: 0 0 0 3px var(--color-accent); }
+
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] .faq-plus { transform: rotate(45deg); }
