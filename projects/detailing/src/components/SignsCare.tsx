@@ -7,7 +7,7 @@ export function SignsCare({ signs, care }: { signs: string[]; care: string[] }) 
     <Section label="Когда пора и уход после" className="border-t border-line">
       <div className="wrap grid gap-4 md:grid-cols-2 md:gap-6">
         <div className="rounded-[22px] border border-line bg-surface p-5 md:p-8">
-          <h2 className="text-[24px] uppercase md:text-[34px]">Когда пора</h2>
+          <h2 className="text-[22px] md:text-[28px]">Когда пора</h2>
           <p className="mt-2 text-[14px] text-muted">Пора записываться, если узнали свою машину:</p>
           <ul className="mt-5 space-y-3">
             {signs.map((x) => (
@@ -16,7 +16,7 @@ export function SignsCare({ signs, care }: { signs: string[]; care: string[] }) 
           </ul>
         </div>
         <div className="rounded-[22px] border border-line bg-surface p-5 md:p-8">
-          <h2 className="text-[24px] uppercase md:text-[34px]">Уход после</h2>
+          <h2 className="text-[22px] md:text-[28px]">Уход после</h2>
           <p className="mt-2 text-[14px] text-muted">Чтобы результат держался дольше:</p>
           <ul className="mt-5 space-y-3">
             {care.map((x) => (

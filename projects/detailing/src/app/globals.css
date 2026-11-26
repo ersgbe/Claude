@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@import "@fontsource-variable/onest";
-@import "@fontsource-variable/unbounded";
+@import "@fontsource-variable/golos-text";
+@import "@fontsource-variable/tektur/standard.css";
 
 /* Палитра: почти чёрный бокс и тёплый свет студийной лампы */
 @theme {
@@ -13,8 +13,8 @@
   --color-accent: #ffe0a3;
   --color-accent-ink: #1d1607;
   --color-danger: #ff9b85;
-  --font-sans: "Onest Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Unbounded Variable", "Onest Variable", ui-sans-serif, sans-serif;
+  --font-sans: "Golos Text Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Tektur Variable", "Golos Text Variable", ui-sans-serif, sans-serif;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -41,7 +41,8 @@ body {
 }
 @media (min-width: 768px) { body { padding-bottom: 0; } }
 
-h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.03em; line-height: 1.05; text-wrap: balance; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 500; font-stretch: 112%; letter-spacing: -0.01em; line-height: 1.08; text-wrap: balance; }
+.font-display { font-stretch: 112%; }
 p { text-wrap: pretty; }
 .tnum { font-variant-numeric: tabular-nums; }
 .no-bar { scrollbar-width: none; } .no-bar::-webkit-scrollbar { display: none; }
@@ -96,3 +97,7 @@ details[open] .faq-plus { transform: rotate(45deg); }
 /* Появление заголовка без JS: работает сразу из HTML, поисковик видит текст */
 @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 .rise { animation: rise 0.9s var(--ease-out-expo) both; }
+
+/* Переход между страницами: новая страница сразу сверху и мягко появляется */
+@keyframes page-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.page-in { animation: page-in 0.45s var(--ease-out-expo) both; }

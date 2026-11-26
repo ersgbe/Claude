@@ -7,7 +7,7 @@ export function Faq({ items = site.faq, title = "Вопросы" }: { items?: QA
     <Section id="faq" label={title} className="border-t border-line">
       <div className="wrap grid gap-x-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)]">
         <div className="mb-6 lg:mb-0">
-          <h2 className="text-[32px] uppercase sm:text-[44px] lg:text-[64px]">{title}</h2>
+          <h2 className="text-[28px] sm:text-[36px] lg:text-[46px]">{title}</h2>
           <p className="mt-3 max-w-[380px] text-[15px] leading-relaxed text-muted">Не нашли ответ? Позвоните, ответим сразу.</p>
         </div>
         <div className="border-t border-line">

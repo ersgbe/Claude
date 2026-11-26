@@ -64,13 +64,12 @@ export function Calculator({ id = "calc", border = true }: { id?: string; border
 
         {/* Итог */}
         <div className="relative mt-4 overflow-hidden rounded-[20px] border border-line bg-surface p-4 md:mt-6 md:flex md:items-center md:justify-between md:gap-8 md:p-6">
-          <div aria-hidden className={cn("beam absolute inset-x-8 top-0 transition-opacity", sel.length ? "opacity-100" : "opacity-0")} />
           <div aria-live="polite">
             <p className="text-[13px] text-muted">{sel.length ? `Выбрано: ${sel.length}` : "Выберите хотя бы одну услугу"}</p>
             <p className="tnum mt-1 flex items-baseline gap-3 font-display text-[30px] leading-none md:text-[40px]">
-              <span className="text-[14px] text-muted">от</span>
+              {sel.length ? <span className="text-[14px] text-muted">от</span> : null}
               <AnimatePresence mode="popLayout" initial={false}>
-                <motion.span key={total} initial={{ y: 12, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -12, opacity: 0 }} transition={{ duration: 0.25 }}>{rub(total)}</motion.span>
+                <motion.span key={total} initial={{ y: 12, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -12, opacity: 0 }} transition={{ duration: 0.25 }}>{sel.length ? rub(total) : "—"}</motion.span>
               </AnimatePresence>
               {off > 0 && <span className="tnum text-[15px] text-muted line-through">{rub(sum)}</span>}
             </p>

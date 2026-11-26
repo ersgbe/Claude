@@ -19,7 +19,7 @@ export function Contacts() {
           <Image src={site.studioImage} alt={`Вход в студию ${site.name}`} fill sizes="(min-width: 1024px) 680px, 100vw" className="object-cover" />
         </div>
         <div className="order-1 lg:order-2">
-          <h2 className="text-[32px] uppercase sm:text-[44px] lg:text-[56px]">Как добраться</h2>
+          <h2 className="text-[28px] sm:text-[36px] lg:text-[46px]">Как добраться</h2>
           <ul className="mt-5 space-y-2 text-[15px] text-fg/85">
             <li className="flex gap-3"><MapPin size={18} className="mt-0.5 shrink-0 text-accent" aria-hidden />{site.address}</li>
             <li className="flex gap-3"><Clock size={18} className="mt-0.5 shrink-0 text-accent" aria-hidden />{site.hours}</li>

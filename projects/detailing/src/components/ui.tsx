@@ -32,7 +32,7 @@ export function Section({ id, className, children, label }: { id?: string; class
 export function Head({ title, text, aside, className }: { title: string; text?: string; aside?: React.ReactNode; className?: string }) {
   return (
     <div className={cn("wrap mb-6 flex flex-col gap-3 md:mb-10 md:flex-row md:items-end md:justify-between md:gap-10", className)}>
-      <h2 className="text-[32px] uppercase sm:text-[44px] lg:text-[64px]">{title}</h2>
+      <h2 className="text-[28px] sm:text-[36px] lg:text-[46px]">{title}</h2>
       {(text || aside) && (
         <div className="flex flex-col gap-4 md:max-w-[380px] md:items-end md:text-right">
           {text && <p className="text-[15px] leading-relaxed text-muted">{text}</p>}
@@ -68,15 +68,14 @@ export function Crumbs({ items }: { items: { label: string; href?: string }[] })
 export function PageHero({ crumbs, title, text, children }: { crumbs: { label: string; href?: string }[]; title: string; text?: string; children?: React.ReactNode }) {
   return (
     <section className="relative overflow-hidden pt-[104px] md:pt-[136px]">
-      <div aria-hidden className="pointer-events-none absolute -top-40 right-[-20%] h-[420px] w-[70%] rotate-[-12deg] bg-[radial-gradient(closest-side,rgb(255_224_163/0.10),transparent)]" />
       <div className="wrap">
         <Crumbs items={crumbs} />
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-12">
-          <h1 className="text-[clamp(34px,9vw,96px)] uppercase leading-[0.98] tracking-[-0.04em]">{title}</h1>
+          <h1 className="text-[clamp(32px,8vw,76px)] uppercase leading-[1] tracking-[-0.01em]">{title}</h1>
           {text && <p className="max-w-[420px] text-[15px] leading-relaxed text-muted md:pb-2 md:text-right md:text-[16px]">{text}</p>}
         </div>
         {children}
-        <div aria-hidden className="beam mt-8 opacity-60 md:mt-12" />
+        <div aria-hidden className="mt-8 h-px bg-line md:mt-12" />
       </div>
     </section>
   );

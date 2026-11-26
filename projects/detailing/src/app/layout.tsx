@@ -22,7 +22,7 @@ export const viewport: Viewport = { themeColor: "#090908", colorScheme: "dark" }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ru">
+    <html lang="ru" data-scroll-behavior="smooth">
       <body>
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-[14px] focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-ink">К содержимому</a>
         <MotionConfig reducedMotion="user">

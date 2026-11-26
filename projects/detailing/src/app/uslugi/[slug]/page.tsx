@@ -11,7 +11,6 @@ import { Packs } from "@/components/Packs";
 import { ClassPrices } from "@/components/ClassPrices";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { Steps } from "@/components/Steps";
-import { CallbackBand } from "@/components/CallbackBand";
 import { Faq } from "@/components/Faq";
 import { Booking } from "@/components/Booking";
 import { ServiceCard } from "@/components/ServiceCard";
@@ -54,7 +53,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       <JsonLd data={ld} />
-      <JsonLd data={crumbsLd([{ name: "Услуги", path: "/uslugi" }, { name: s.title, path: `/uslugi/${s.slug}` }])} />
+      <JsonLd data={crumbsLd([{ name: "Услуги и цены", path: "/uslugi" }, { name: s.title, path: `/uslugi/${s.slug}` }])} />
       <ServiceHero s={s} />
       <SignsCare signs={s.signs} care={s.care} />
       <Includes items={s.includes} />
@@ -65,7 +64,6 @@ export default async function Page({ params }: Props) {
         <div className="wrap max-md:px-0"><BeforeAfter /></div>
       </Section>
       <Steps items={s.process} title="Как делаем" />
-      <CallbackBand service={s.title} />
       <Faq items={[...s.faq, ...site.faq.slice(2, 4)]} />
       <Section label="Другие услуги" className="border-t border-line">
         <Head title="Другие услуги" />

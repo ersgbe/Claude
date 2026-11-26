@@ -45,7 +45,7 @@ export function Rail({ label, children, desktopGrid = "md:grid-cols-2 lg:grid-co
       </div>
       <div className={cn("wrap mt-5 md:hidden", !m.can && "invisible")} aria-hidden>
         <div className="relative h-px bg-white/12">
-          <span className="beam absolute -top-px !h-[3px] rounded-full transition-[left] duration-150 ease-out" style={{ width: `${m.size}%`, left: `${m.pos * (100 - m.size)}%` }} />
+          <span className="absolute -top-px h-[3px] rounded-full bg-accent transition-[left] duration-150 ease-out" style={{ width: `${m.size}%`, left: `${m.pos * (100 - m.size)}%` }} />
         </div>
       </div>
     </div>

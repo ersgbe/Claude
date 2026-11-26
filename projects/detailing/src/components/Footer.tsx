@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { site } from "@/site.config";
-import { FitText } from "./FitText";
 
 const col = "text-[13px] text-muted mb-3";
 const link = "block py-1.5 text-[15px] text-fg/80 transition hover:text-accent";
@@ -32,10 +31,7 @@ export function Footer() {
             </div>
           </div>
         </div>
-        <div aria-hidden className="mt-12 select-none overflow-hidden md:mt-16">
-          <FitText className="font-display font-medium uppercase leading-[0.8] tracking-[-0.05em] text-surface-2">{site.name}</FitText>
-        </div>
-        <div className="beam mt-6 opacity-50" />
+        <div className="mt-12 h-px bg-line md:mt-16" />
         <div className="flex flex-col gap-1 py-6 text-[13px] text-muted md:flex-row md:justify-between">
           <p>{site.name}, {site.tagline.toLowerCase()} {site.cityIn}</p>
           <p>© {new Date().getFullYear()} {site.legal}</p>

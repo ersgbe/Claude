@@ -21,8 +21,8 @@ export function ServiceHero({ s }: { s: Service }) {
 
       <div className="wrap relative -mt-16 grid gap-8 md:mt-0 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] md:items-center md:gap-16">
         <div>
-          <Crumbs items={[{ label: "Главная", href: "/" }, { label: "Услуги", href: "/uslugi" }, { label: s.title }]} />
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease }} className="text-[clamp(32px,8.5vw,80px)] uppercase leading-[0.98] tracking-[-0.04em]">
+          <Crumbs items={[{ label: "Главная", href: "/" }, { label: "Услуги и цены", href: "/uslugi" }, { label: s.title }]} />
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease }} className="text-[clamp(32px,8.5vw,80px)] uppercase leading-[0.98] tracking-[-0.01em]">
             {s.title}
           </motion.h1>
           <p className="mt-4 max-w-[520px] text-[15px] leading-relaxed text-fg/80 md:text-[17px]">{s.intro}</p>
@@ -49,7 +49,6 @@ export function ServiceHero({ s }: { s: Service }) {
           className="relative hidden aspect-[4/5] overflow-hidden rounded-[28px] bg-surface md:block"
         >
           <Image src={s.image} alt={s.title} fill priority sizes="(min-width: 1280px) 540px, 45vw" className="object-cover" />
-          <div aria-hidden className="beam absolute inset-x-10 bottom-10" />
         </motion.div>
       </div>
     </section>

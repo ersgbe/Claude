@@ -5,7 +5,6 @@ import { Calculator } from "@/components/Calculator";
 import { Works } from "@/components/Works";
 import { Benefits } from "@/components/Benefits";
 import { Packs } from "@/components/Packs";
-import { CallbackBand } from "@/components/CallbackBand";
 import { JsonLd } from "@/components/ui";
 import { Reviews } from "@/components/Reviews";
 import { Faq } from "@/components/Faq";
@@ -57,7 +56,6 @@ export default function Page() {
       <Packs id="bundles" items={site.bundles} title="Комплексы" text="Несколько услуг за один визит. Выходит дешевле, чем по отдельности." />
       <Benefits />
       <Reviews />
-      <CallbackBand />
       <Booking />
       <Faq />
       <Contacts />

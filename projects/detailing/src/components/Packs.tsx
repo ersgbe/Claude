@@ -13,7 +13,6 @@ export function Packs({ items, title, text, service, id }: { items: Pack[]; titl
         <Tiles cols="[--n:1] md:[--n:3]">
           {items.map((p) => (
             <li key={p.name} className={cn("relative flex flex-col overflow-hidden rounded-[22px] border bg-surface p-5 md:p-7", p.featured ? "border-accent/40" : "border-line")}>
-              {p.featured && <div aria-hidden className="beam absolute inset-x-6 top-0" />}
               <h3 className="text-[20px] md:text-[24px]">{p.name}</h3>
               <p className="mt-1.5 text-[14px] text-muted">{p.text}</p>
               <div className="mt-3 flex items-center justify-between gap-3 md:mt-6">

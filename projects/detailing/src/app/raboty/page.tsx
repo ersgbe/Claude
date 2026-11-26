@@ -5,7 +5,6 @@ import { Head, JsonLd, PageHero, Section } from "@/components/ui";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { Gallery } from "@/components/Gallery";
 import { Reviews } from "@/components/Reviews";
-import { CallbackBand } from "@/components/CallbackBand";
 import { Booking } from "@/components/Booking";
 
 export const metadata: Metadata = {
@@ -27,7 +26,6 @@ export default function Page() {
         <div className="wrap"><Gallery photos={site.works.photos} /></div>
       </Section>
       <Reviews />
-      <CallbackBand />
       <Booking />
     </>
   );

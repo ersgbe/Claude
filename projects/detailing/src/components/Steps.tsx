@@ -7,7 +7,7 @@ export function Steps({ items = site.steps, title = "Как это работа�
     <Section label={title} className="border-t border-line">
       <Head title={title} />
       <ol className="wrap relative grid gap-0 md:grid-cols-4 md:gap-8">
-        <span aria-hidden className="beam absolute left-[calc(var(--pad)+60px)] right-[var(--pad)] top-[23px] hidden opacity-60 md:block" />
+        <span aria-hidden className="absolute left-[calc(var(--pad)+60px)] right-[var(--pad)] top-[23px] hidden h-px bg-line md:block" />
         {items.map((s, i) => (
           <li key={s.title} className="relative flex gap-5 pb-6 last:pb-0 md:block md:pb-0">
             {i < items.length - 1 && <span aria-hidden className="absolute bottom-0 left-[23px] top-12 w-px bg-line md:hidden" />}
