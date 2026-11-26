@@ -4,7 +4,7 @@
 
 ## Структура
 - `projects/<имя>/` — каждый проект в своей папке (сайты деплоятся на Vercel).
-- `.claude/skills/` — скиллы: `ui-ux-pro-max`, `shadcn`, `frontend-design`, `impeccable`, `design-taste-frontend` (Taste), `motion-react`, SEO (`seo*`, `geo*`, `schema`, `programmatic-seo`), блог (`blog*`), текст (`humanizer`, `plain-writing`, `concise-writing`).
+- `.claude/skills/` — скиллы: `ui-ux-pro-max`, `shadcn`, `frontend-design`, `impeccable`, `design-taste-frontend` (Taste), `motion-react`, SEO (`seo*`, `geo*`, `schema`, `programmatic-seo`), блог (`blog*`), текст (`humanizer`, `plain-writing`, `concise-writing`), `efficient-execution`.
 - `.mcp.json` — MCP-серверы: `shadcn`, `vercel`.
 
 ## Правила
@@ -41,3 +41,4 @@
 - Сначала результат в 1–2 строки, затем короткие пункты. Без длинных объяснений, таблиц и ссылок без нужды.
 - Не больше одного вопроса в конце, только если без ответа нельзя продолжить.
 - Скиллы вызываем на каждой подходящей задаче, не только по просьбе. Хук в `.claude/settings.json` напоминает об этом при каждом сообщении.
+- `efficient-execution` применяем всегда: экономим токены, делаем минимум действий, читаем только нужные участки файлов, тестируем только изменённое.
