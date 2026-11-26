@@ -29,7 +29,7 @@ export function Chips({ items, value, onChange, label, id, className, flush = fa
             onClick={() => onChange(i)} onKeyDown={(e) => key(e, i)}
             className={cn(
               "relative h-11 min-w-0 rounded-[14px] px-2 text-[14px] max-[360px]:text-[12.5px] font-medium transition-colors duration-200 sm:px-5 sm:text-[15px] min-[400px]:px-3",
-              equal ? "" : "shrink-0 px-4",
+              equal ? "" : "grow px-4",
               value === i ? "text-accent-ink" : "bg-surface-2 text-fg/85 hover:bg-[#2d2c28] hover:text-fg",
             )}
           >
