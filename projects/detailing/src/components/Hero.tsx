@@ -1,39 +1,52 @@
 "use client";
 import { motion } from "motion/react";
+import { Clock, MapPin } from "lucide-react";
 import { site } from "@/site.config";
-import { CallbackForm } from "./CallbackForm";
+import { LeadForm } from "./LeadForm";
 
-const rise = (i: number) => ({
-  initial: { opacity: 0, y: 20 },
+const ease = [0.16, 1, 0.3, 1] as const;
+const rise = (d: number) => ({
+  initial: { opacity: 0, y: 24 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, delay: 0.08 * i, ease: [0.22, 1, 0.36, 1] as const },
+  transition: { duration: 0.9, delay: d, ease },
 });
 
+// Первый экран: фото на весь экран, крупный заголовок внизу слева,
+// полоса света «включается» при загрузке, под ней короткая форма.
 export function Hero() {
   return (
-    <section id="top" className="relative isolate flex h-[100svh] max-h-[920px] min-h-[600px] flex-col justify-end overflow-hidden">
-      <picture>
+    <section id="top" className="relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden md:min-h-[max(680px,100svh)]">
+      <motion.picture
+        initial={{ scale: 1.08, opacity: 0.4 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1.8, ease }}
+        className="absolute inset-0 -z-20 block"
+      >
         <source media="(min-width: 768px)" srcSet="/images/hero.jpg" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/images/hero-m.jpg" alt="Автомобиль после детейлинга" fetchPriority="high" className="absolute inset-0 -z-20 h-full w-full object-cover" />
-      </picture>
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-bg via-bg/55 to-bg/10 md:bg-gradient-to-r md:from-bg/90 md:via-bg/40 md:to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 -z-10 h-1/3 bg-gradient-to-t from-bg to-transparent md:hidden" />
+        <img src="/images/hero-m.jpg" alt="Автомобиль в студии после полировки" fetchPriority="high" className="h-full w-full object-cover" />
+      </motion.picture>
+      <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(9_9_8/0.55)_0%,rgb(9_9_8/0)_22%,rgb(9_9_8/0.15)_45%,rgb(9_9_8/0.92)_78%,#090908_100%)] md:bg-[linear-gradient(90deg,rgb(9_9_8/0.88)_0%,rgb(9_9_8/0.4)_50%,rgb(9_9_8/0)_75%),linear-gradient(0deg,#090908_0%,rgb(9_9_8/0)_40%)]" />
 
-      <div className="mx-auto w-full max-w-[1200px] px-5 pb-6 md:px-8 md:pb-10">
-        <div className="max-w-[640px]">
-          <motion.h1 {...rise(0)} className="text-[27px] uppercase leading-[1.1] sm:text-4xl md:text-[44px]">{site.hero.title}</motion.h1>
-          <motion.p {...rise(1)} className="mt-3 max-w-[460px] text-[15px] leading-relaxed text-fg/75 md:mt-4 md:text-base">{site.hero.lead}</motion.p>
-          <motion.div {...rise(2)} className="mt-5 max-w-[480px] md:mt-6"><CallbackForm /></motion.div>
+      <div className="wrap pb-[104px] pt-28 md:pb-14">
+        <h1 className="uppercase">
+          <motion.span {...rise(0.15)} className="block text-[clamp(36px,11vw,120px)] leading-[0.98] tracking-[-0.04em]">{site.hero.title}</motion.span>
+          <motion.span {...rise(0.3)} className="mt-3 block text-[13px] font-medium tracking-[0.02em] text-accent sm:text-[15px] md:mt-5 md:text-[18px]">{site.hero.titleSmall}</motion.span>
+        </h1>
+
+        <motion.div
+          aria-hidden initial={{ scaleX: 0, opacity: 0 }} animate={{ scaleX: 1, opacity: 1 }} transition={{ duration: 1.4, delay: 0.5, ease }}
+          className="beam my-5 origin-left md:my-8"
+        />
+
+        <div className="grid gap-6 md:grid-cols-[minmax(0,560px)_1fr] md:items-end md:gap-16">
+          <motion.div {...rise(0.6)}>
+            <p className="mb-4 max-w-[440px] text-[15px] leading-relaxed text-fg/80 md:text-[17px]">{site.hero.lead}</p>
+            <LeadForm source="Первый экран" />
+          </motion.div>
+          <motion.ul {...rise(0.75)} className="hidden space-y-2 justify-self-end text-[15px] text-fg/75 md:block">
+            <li className="flex items-center gap-3"><MapPin size={17} className="text-accent" aria-hidden />{site.address}</li>
+            <li className="flex items-center gap-3"><Clock size={17} className="text-accent" aria-hidden />{site.hours}</li>
+          </motion.ul>
         </div>
-        <motion.dl {...rise(3)} className="mt-6 grid max-w-[640px] grid-cols-3 border-t border-white/10 pt-4 md:mt-8">
-          {site.stats.map((s, i) => (
-            <div key={s.label} className={i > 0 ? "border-l border-white/10 pl-4" : ""}>
-              <dt className="font-display text-[17px] font-medium md:text-xl">{s.value}</dt>
-              <dd className="text-[13px] text-muted">{s.label}</dd>
-            </div>
-          ))}
-        </motion.dl>
       </div>
     </section>
   );

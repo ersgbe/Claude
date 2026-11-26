@@ -1,20 +1,25 @@
 import { Plus } from "lucide-react";
 import { site } from "@/site.config";
-import { Heading, Section } from "./ui";
+import { Section } from "./ui";
 
 export function Faq() {
   return (
-    <Section id="faq" className="pt-4 md:pt-8">
-      <div className="grid gap-x-16 md:grid-cols-[320px_1fr]">
-        <Heading title="Вопросы" text="Не нашли ответ? Позвоните, ответим сразу." className="mb-4 md:mb-0" />
-        <div>
+    <Section id="faq" label="Вопросы" className="border-t border-line">
+      <div className="wrap grid gap-x-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)]">
+        <div className="mb-6 lg:mb-0">
+          <h2 className="text-[32px] uppercase sm:text-[44px] lg:text-[64px]">Вопросы</h2>
+          <p className="mt-3 max-w-[380px] text-[15px] leading-relaxed text-muted">Не нашли ответ? Позвоните, ответим сразу.</p>
+        </div>
+        <div className="border-t border-line">
           {site.faq.map((f) => (
-            <details key={f.q} className="border-t border-line last:border-b">
-              <summary className="flex min-h-14 cursor-pointer items-center justify-between gap-4 py-3 text-[15px] font-medium md:text-base">
+            <details key={f.q} className="group border-b border-line">
+              <summary className="flex min-h-16 cursor-pointer items-center justify-between gap-4 py-4 text-[16px] font-medium transition-colors hover:text-accent md:text-[18px]">
                 {f.q}
-                <Plus className="faq-plus shrink-0 text-accent transition-transform" size={20} aria-hidden />
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-[12px] bg-surface-2 transition group-open:bg-accent group-open:text-accent-ink">
+                  <Plus className="faq-plus transition-transform duration-300" size={18} aria-hidden />
+                </span>
               </summary>
-              <p className="pb-5 pr-8 text-[14px] leading-relaxed text-muted md:text-[15px]">{f.a}</p>
+              <p className="max-w-[620px] pb-6 pr-14 text-[15px] leading-relaxed text-muted">{f.a}</p>
             </details>
           ))}
         </div>

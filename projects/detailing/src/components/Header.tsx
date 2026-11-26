@@ -1,51 +1,78 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, Phone, X } from "lucide-react";
 import { site } from "@/site.config";
 import { cn } from "@/lib/utils";
+import { button, tile } from "./ui";
 
-const nav = [
-  ["Услуги", "#services"],
-  ["Цены", "#prices"],
-  ["Работы", "#works"],
-  ["Вопросы", "#faq"],
-  ["Контакты", "#booking"],
-];
-const tile = "grid h-11 place-items-center rounded-[14px] bg-surface-2/85 backdrop-blur-xl";
-
+// Шапка из плиток: логотип, меню, кремовая плитка-телефон, бургер.
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const on = () => setScrolled(window.scrollY > 40);
+    on();
+    window.addEventListener("scroll", on, { passive: true });
+    return () => window.removeEventListener("scroll", on);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.style.overflow = open ? "hidden" : "";
+    const esc = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", esc);
+    return () => window.removeEventListener("keydown", esc);
+  }, [open]);
+
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div className="mx-auto flex h-[68px] max-w-[1200px] items-center justify-between gap-2 px-4 md:px-8">
-        <a href="#top" className={cn(tile, "px-4")} aria-label={`${site.name}, на главную`}>
-          <span className="font-display text-[17px] font-semibold tracking-tight">{site.name}</span>
+      <div aria-hidden className={cn("absolute inset-0 -z-10 border-b border-line bg-bg/80 backdrop-blur-xl transition-opacity duration-300", scrolled || open ? "opacity-100" : "opacity-0")} />
+      <div className="wrap flex h-[72px] items-center justify-between gap-2">
+        <a href="#top" onClick={() => setOpen(false)} className={cn(tile, "h-12 px-4")} aria-label={`${site.name}, наверх`}>
+          <span className="font-display text-[15px] font-semibold tracking-[0.08em]">{site.name}</span>
         </a>
-        <nav aria-label="Основная" className={cn(tile, "hidden gap-7 px-6 lg:flex")}>
-          {nav.map(([l, h]) => (
-            <a key={h} href={h} className="text-[14px] text-muted transition hover:text-fg">{l}</a>
+        <nav aria-label="Разделы" className={cn(tile, "hidden h-12 grid-flow-col gap-1 px-2 lg:grid")}>
+          {site.nav.map((n) => (
+            <a key={n.href} href={n.href} className="grid h-10 place-items-center rounded-[10px] px-4 text-[14px] text-fg/70 transition hover:bg-white/6 hover:text-fg">{n.label}</a>
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <a href={`tel:${site.phoneHref}`} className={cn(tile, "hidden px-4 text-[14px] font-semibold hover:text-accent md:grid")}>{site.phone}</a>
-          <a href={`tel:${site.phoneHref}`} aria-label="Позвонить" className={cn(tile, "w-11 !bg-accent text-accent-ink")}><Phone size={18} aria-hidden /></a>
-          <button type="button" aria-label={open ? "Закрыть меню" : "Открыть меню"} aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen((v) => !v)} className={cn(tile, "w-11 lg:hidden")}>
-            {open ? <X size={20} /> : <Menu size={20} />}
+          <a href={`tel:${site.phoneHref}`} className={cn(button(), "h-12 px-4 max-md:w-12 max-md:px-0")} aria-label={`Позвонить: ${site.phone}`}>
+            <Phone size={18} aria-hidden />
+            <span className="tnum hidden md:inline">{site.phone}</span>
+          </a>
+          <button
+            type="button" aria-label={open ? "Закрыть меню" : "Открыть меню"} aria-expanded={open} aria-controls="menu"
+            onClick={() => setOpen((v) => !v)} className={cn(tile, "h-12 w-12 lg:hidden")}
+          >
+            {open ? <X size={20} aria-hidden /> : <Menu size={20} aria-hidden />}
           </button>
         </div>
       </div>
+
       <AnimatePresence>
         {open && (
-          <motion.nav
-            id="mobile-menu" aria-label="Мобильная"
-            initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.18 }}
-            className="mx-4 rounded-3xl border border-line bg-surface/95 px-5 py-2 backdrop-blur-xl lg:hidden"
+          <motion.div
+            id="menu" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}
+            className="fixed inset-x-0 bottom-0 top-[72px] -z-10 flex flex-col bg-bg/97 backdrop-blur-xl lg:hidden"
           >
-            {nav.map(([l, h], i) => (
-              <a key={h} href={h} onClick={() => setOpen(false)} className={cn("flex h-14 items-center text-lg", i > 0 && "border-t border-line")}>{l}</a>
-            ))}
-          </motion.nav>
+            <nav aria-label="Меню" className="wrap flex flex-1 flex-col justify-center">
+              {site.nav.map((n, i) => (
+                <motion.a
+                  key={n.href} href={n.href} onClick={() => setOpen(false)}
+                  initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.04 * i, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex h-16 items-center border-b border-line font-display text-[26px] uppercase tracking-[-0.02em]"
+                >
+                  {n.label}
+                </motion.a>
+              ))}
+            </nav>
+            <div className="wrap pb-[max(20px,env(safe-area-inset-bottom))]">
+              <p className="mb-3 text-[14px] text-muted">{site.address}. {site.hours}.</p>
+              <a href={`tel:${site.phoneHref}`} className={cn(button({ size: "lg" }), "tnum w-full")}><Phone size={18} aria-hidden /> {site.phone}</a>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </header>

@@ -3,11 +3,12 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
 import { Prices } from "@/components/Prices";
-import { BeforeAfter } from "@/components/BeforeAfter";
+import { Works } from "@/components/Works";
 import { Steps } from "@/components/Steps";
 import { Reviews } from "@/components/Reviews";
 import { Faq } from "@/components/Faq";
 import { Booking } from "@/components/Booking";
+import { Contacts } from "@/components/Contacts";
 import { Footer } from "@/components/Footer";
 import { MobileBar } from "@/components/MobileBar";
 
@@ -23,6 +24,7 @@ const jsonLd = {
       url: site.url,
       telephone: site.phone,
       image: `${site.url}/images/og.jpg`,
+      hasMap: site.mapUrl,
       priceRange: "₽₽",
       address: { "@type": "PostalAddress", streetAddress: site.addressFull, addressLocality: site.city, addressCountry: "RU" },
       openingHoursSpecification: { "@type": "OpeningHoursSpecification", dayOfWeek: site.hoursSchema.days, opens: site.hoursSchema.opens, closes: site.hoursSchema.closes },
@@ -53,11 +55,12 @@ export default function Page() {
         <Hero />
         <Services />
         <Prices />
-        <BeforeAfter />
+        <Works />
         <Steps />
         <Reviews />
-        <Faq />
         <Booking />
+        <Faq />
+        <Contacts />
       </main>
       <Footer />
       <MobileBar />

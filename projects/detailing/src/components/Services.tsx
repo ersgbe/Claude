@@ -4,35 +4,44 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { site } from "@/site.config";
 import { rub } from "@/lib/utils";
-import { Chips, Heading, Section } from "./ui";
+import { Head, Section } from "./ui";
+import { Chips } from "./Chips";
 import { Rail } from "./Rail";
-import { BookLink } from "./BookLink";
+
+// Клик по карточке: прокрутка к записи и выбор услуги в форме
+const pick = (slug: string) => window.dispatchEvent(new CustomEvent("select-service", { detail: slug }));
 
 export function Services() {
   const [i, setI] = useState(0);
   const cat = site.serviceCats[i];
   const list = site.services.filter((s) => cat === "Все" || s.cat === cat);
   return (
-    <Section id="services">
-      <Heading title="Услуги" />
-      <Chips items={site.serviceCats} value={i} onChange={setI} label="Направление" />
-      <Rail label="Услуги, листайте вправо" resetKey={cat}>
-        {list.map((s) => (
-          <BookLink key={s.slug} slug={s.slug} className="group relative aspect-[4/5] w-[74vw] max-w-[320px] shrink-0 snap-start overflow-hidden rounded-[22px] bg-surface md:w-[320px]">
-            <Image src={s.image} alt="" fill sizes="320px" className="object-cover transition duration-500 group-hover:scale-[1.03]" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5">
-              <div>
-                <h3 className="text-lg leading-tight">{s.title}</h3>
-                <p className="mt-1 text-[13px] leading-snug text-fg/70">{s.text}</p>
-                <p className="mt-3 text-[15px] font-semibold text-accent">от {rub(s.from)}</p>
+    <Section id="services" label="Услуги">
+      <Head title="Услуги" text="Нажмите на услугу, чтобы записаться. Цена зависит от класса машины." />
+      <Chips id="svc" items={site.serviceCats} value={i} onChange={setI} label="Направление" className="mb-5" />
+      <div id="svc-panel" role="tabpanel" aria-labelledby={`svc-tab-${i}`}>
+        <Rail label="Услуги, листайте вправо" resetKey={cat}>
+          {list.map((s) => (
+            <a
+              key={s.slug} href="#booking" onClick={() => pick(s.slug)} data-card
+              className="zoom group relative flex aspect-[4/5] w-[78vw] max-w-[360px] shrink-0 snap-start flex-col justify-end overflow-hidden rounded-[20px] bg-surface outline-offset-4 transition-transform duration-300 hover:-translate-y-0.5 md:w-[360px]"
+            >
+              <Image src={s.image} alt="" fill sizes="(min-width: 768px) 360px, 78vw" className="-z-0 object-cover" />
+              <div aria-hidden className="absolute inset-0 bg-[linear-gradient(180deg,rgb(9_9_8/0.35)_0%,rgb(9_9_8/0)_30%,rgb(9_9_8/0.2)_50%,rgb(9_9_8/0.94)_100%)]" />
+              <span className="absolute left-4 top-4 rounded-[10px] bg-bg/60 px-3 py-1.5 text-[13px] text-fg/85 backdrop-blur-md">{s.time}</span>
+              <div className="relative p-5">
+                <h3 className="text-[21px] leading-[1.1]">{s.title}</h3>
+                <p className="mt-2 text-[14px] leading-snug text-fg/65">{s.text}</p>
+                <div className="mt-4 flex items-center justify-between border-t border-white/12 pt-4">
+                  <p className="tnum font-display text-[19px] text-accent"><span className="text-[13px] text-fg/60">от </span>{rub(s.from)}</p>
+                  <span aria-hidden className="grid h-11 w-11 place-items-center rounded-[12px] bg-accent text-accent-ink transition-transform duration-300 group-hover:rotate-45"><ArrowUpRight size={20} /></span>
+                </div>
               </div>
-              <span aria-hidden className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-accent text-accent-ink transition group-hover:rotate-45"><ArrowUpRight size={18} /></span>
-            </div>
-            <span className="sr-only">Записаться: {s.title}</span>
-          </BookLink>
-        ))}
-      </Rail>
+              <span className="sr-only">. Записаться</span>
+            </a>
+          ))}
+        </Rail>
+      </div>
     </Section>
   );
 }

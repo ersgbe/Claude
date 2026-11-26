@@ -1,10 +1,12 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { tile } from "./ui";
 
-// Горизонтальная лента: прилипает к карточкам, следующая карточка выглядывает,
-// снизу полоса прогресса, на десктопе стрелки. Лента выходит к краю экрана.
-export function Rail({ label, children, resetKey }: { label: string; children: React.ReactNode; resetKey?: string }) {
+// Горизонтальная лента: карточки прилипают к краю сетки, следующая выглядывает,
+// снизу полоса прогресса со световой меткой, на компьютере стрелки.
+export function Rail({ label, children, resetKey, id }: { label: string; children: React.ReactNode; resetKey?: string; id?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [m, setM] = useState({ pos: 0, size: 100, can: false, atStart: true, atEnd: false });
 
@@ -14,7 +16,7 @@ export function Rail({ label, children, resetKey }: { label: string; children: R
     const max = el.scrollWidth - el.clientWidth;
     setM({
       pos: max > 0 ? el.scrollLeft / max : 0,
-      size: Math.min(100, (el.clientWidth / el.scrollWidth) * 100),
+      size: Math.max(12, Math.min(100, (el.clientWidth / el.scrollWidth) * 100)),
       can: max > 4,
       atStart: el.scrollLeft < 4,
       atEnd: el.scrollLeft > max - 4,
@@ -31,29 +33,35 @@ export function Rail({ label, children, resetKey }: { label: string; children: R
     return () => ro.disconnect();
   }, [resetKey, update]);
 
-  const go = (d: number) => ref.current?.scrollBy({ left: d * Math.max(280, ref.current.clientWidth * 0.6), behavior: "smooth" });
+  const go = (d: number) => {
+    const el = ref.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-card]");
+    const step = card ? card.offsetWidth + 16 : el.clientWidth * 0.8;
+    el.scrollBy({ left: d * step * Math.max(1, Math.floor(el.clientWidth / step) - 1), behavior: "smooth" });
+  };
 
   return (
     <div>
       <div
-        ref={ref} onScroll={update} role="region" aria-label={label} tabIndex={0}
-        className="no-bar relative left-1/2 flex w-screen -translate-x-1/2 snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain scroll-smooth pb-1 md:gap-4"
+        ref={ref} id={id} onScroll={update} role="region" aria-label={label} tabIndex={0}
+        className="no-bar flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain scroll-smooth md:gap-4"
         style={{ paddingInline: "var(--edge)", scrollPaddingInline: "var(--edge)" }}
       >
         {children}
-        <span aria-hidden className="w-px shrink-0" />
       </div>
-      {m.can && (
-        <div className="mt-5 flex items-center gap-4">
-          <div className="relative h-[3px] flex-1 rounded-full bg-white/10" aria-hidden>
-            <span className="absolute inset-y-0 rounded-full bg-accent transition-[left] duration-100" style={{ width: `${m.size}%`, left: `${m.pos * (100 - m.size)}%` }} />
-          </div>
-          <div className="hidden gap-2 md:flex">
-            <button type="button" aria-label="Назад" disabled={m.atStart} onClick={() => go(-1)} className="grid h-11 w-11 place-items-center rounded-[14px] bg-surface-2 transition hover:bg-white/12 disabled:opacity-30"><ChevronLeft size={20} /></button>
-            <button type="button" aria-label="Вперёд" disabled={m.atEnd} onClick={() => go(1)} className="grid h-11 w-11 place-items-center rounded-[14px] bg-surface-2 transition hover:bg-white/12 disabled:opacity-30"><ChevronRight size={20} /></button>
-          </div>
+      <div className={cn("wrap mt-5 flex h-11 items-center gap-5", !m.can && "invisible")} aria-hidden={!m.can}>
+        <div className="relative h-px flex-1 bg-white/12">
+          <span
+            className="beam absolute -top-px !h-[3px] rounded-full transition-[left] duration-150 ease-out"
+            style={{ width: `${m.size}%`, left: `${m.pos * (100 - m.size)}%` }}
+          />
         </div>
-      )}
+        <div className="hidden gap-2 md:flex">
+          <button type="button" aria-label="Листать назад" disabled={m.atStart} onClick={() => go(-1)} className={cn(tile, "h-11 w-11 disabled:pointer-events-none disabled:opacity-30")}><ArrowLeft size={18} aria-hidden /></button>
+          <button type="button" aria-label="Листать вперёд" disabled={m.atEnd} onClick={() => go(1)} className={cn(tile, "h-11 w-11 disabled:pointer-events-none disabled:opacity-30")}><ArrowRight size={18} aria-hidden /></button>
+        </div>
+      </div>
     </div>
   );
 }

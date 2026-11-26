@@ -1,17 +1,20 @@
 import { site } from "@/site.config";
-import { Heading, Section } from "./ui";
+import { Head, Section } from "./ui";
 
+// Как проходит работа. Это порядок действий, поэтому шаги пронумерованы.
 export function Steps() {
   return (
-    <Section className="pt-4 md:pt-8">
-      <Heading title="Как мы работаем" />
-      <ol className="grid md:grid-cols-4 md:gap-6">
+    <Section label="Как проходит работа" className="border-t border-line">
+      <Head title="Как это работает" />
+      <ol className="wrap relative grid gap-0 md:grid-cols-4 md:gap-8">
+        <span aria-hidden className="beam absolute left-[calc(var(--pad)+60px)] right-[var(--pad)] top-[23px] hidden opacity-60 md:block" />
         {site.steps.map((s, i) => (
-          <li key={s.title} className="flex gap-4 border-t border-line py-4 md:block md:py-5">
-            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-surface-2 font-display text-[13px] text-accent md:mb-4">{i + 1}</span>
-            <div>
-              <h3 className="text-base">{s.title}</h3>
-              <p className="mt-1 text-[14px] leading-relaxed text-muted">{s.text}</p>
+          <li key={s.title} className="relative flex gap-5 pb-6 last:pb-0 md:block md:pb-0">
+            {i < site.steps.length - 1 && <span aria-hidden className="absolute bottom-0 left-[23px] top-12 w-px bg-line md:hidden" />}
+            <span className="tnum relative z-10 grid h-12 w-12 shrink-0 place-items-center rounded-[14px] border border-line bg-surface font-display text-[15px] text-accent">{i + 1}</span>
+            <div className="pt-2.5 md:pt-6">
+              <h3 className="text-[19px] md:text-[22px]">{s.title}</h3>
+              <p className="mt-2 max-w-[300px] text-[15px] leading-relaxed text-muted">{s.text}</p>
             </div>
           </li>
         ))}
