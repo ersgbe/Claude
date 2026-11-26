@@ -4,7 +4,7 @@
 
 ## Структура
 - `projects/<имя>/` — каждый проект в своей папке (сайты деплоятся на Vercel).
-- `.claude/skills/` — скиллы: `ui-ux-pro-max`, `shadcn`, `frontend-design`.
+- `.claude/skills/` — скиллы: `ui-ux-pro-max`, `shadcn`, `frontend-design`, `impeccable`, `design-taste-frontend` (Taste), `motion-react`.
 - `.mcp.json` — MCP-серверы: `shadcn`, `vercel`.
 
 ## Правила
