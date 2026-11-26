@@ -110,10 +110,10 @@ export function LeadForm({ full = false, source, service: preset }: { full?: boo
               </div>
               <fieldset className="min-w-0">
                 <legend className={label}>Когда удобно приехать</legend>
-                <div className="no-bar -mx-1 flex gap-2 overflow-x-auto overscroll-x-contain px-1 pb-1">
+                <div className="flex flex-wrap gap-2">
                   {(days.length ? days : ["Сегодня", "Завтра"]).map((d, i) => (
                     <button key={d} type="button" aria-pressed={day === i} onClick={() => setDay(day === i ? -1 : i)}
-                      className={cn("h-11 shrink-0 rounded-[12px] px-4 text-[14px] font-medium transition", day === i ? "bg-accent text-accent-ink" : "bg-surface-2 hover:bg-[#2d2c28]")}>{d}</button>
+                      className={cn("h-11 rounded-[12px] px-3.5 text-[14px] font-medium transition", day === i ? "bg-accent text-accent-ink" : "bg-surface-2 hover:bg-[#2d2c28]")}>{d}</button>
                   ))}
                 </div>
                 {day >= 0 && (
