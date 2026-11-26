@@ -4,7 +4,7 @@ import { Heading, Section } from "./ui";
 export function Steps() {
   return (
     <Section className="bg-surface/50">
-      <Heading kicker="Как мы работаем" title="Четыре шага от звонка до ключей" />
+      <Heading title="Четыре шага от звонка до ключей" />
       <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {site.steps.map((s, i) => (
           <li key={s.title} className="rounded-[var(--radius-card)] border border-line bg-bg p-6">

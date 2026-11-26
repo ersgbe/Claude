@@ -1,10 +1,8 @@
 "use client";
 import Image from "next/image";
 import { motion } from "motion/react";
-import { Phone, Star, ShieldCheck, Clock, Award } from "lucide-react";
+import { Star, ShieldCheck, Clock, Award } from "lucide-react";
 import { site } from "@/site.config";
-import { button } from "./ui";
-import { cn } from "@/lib/utils";
 import { CallbackForm } from "./CallbackForm";
 
 const icons = [Clock, Star, Star, ShieldCheck];
@@ -16,24 +14,19 @@ const rise = (i: number) => ({
 
 export function Hero() {
   return (
-    <section id="top" className="relative isolate min-h-[100svh] overflow-hidden pt-[68px]">
+    <section id="top" className="relative isolate min-h-[100svh] overflow-hidden pt-[84px]">
       <Image src="/images/hero.jpg" alt="Автомобиль после детейлинга" fill priority sizes="100vw" className="-z-20 object-cover object-[70%_center]" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-bg via-bg/80 to-bg/10 max-md:bg-gradient-to-b max-md:from-bg/70 max-md:via-bg/85 max-md:to-bg" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-bg/90 via-bg/50 to-transparent max-md:bg-gradient-to-t max-md:from-bg max-md:via-bg/60 max-md:to-bg/20" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-bg to-transparent" />
 
-      <div className="mx-auto flex min-h-[calc(100svh-68px)] max-w-[1200px] flex-col justify-center gap-10 px-5 py-10 md:px-8">
+      <div className="mx-auto flex min-h-[calc(100svh-84px)] max-w-[1200px] flex-col justify-end gap-8 px-5 py-10 md:px-8">
         <div className="max-w-[680px]">
-          <motion.p {...rise(0)} className="mb-5 inline-flex items-center gap-2 rounded-full border border-line bg-white/5 px-4 py-1.5 text-sm text-muted">
+          <motion.p {...rise(0)} className="mb-5 inline-flex items-center gap-2 rounded-xl border border-line bg-white/5 px-4 py-2 text-sm text-muted">
             <Award size={16} className="text-accent" aria-hidden /> {site.city}, рейтинг 4,9 на картах
           </motion.p>
-          <motion.h1 {...rise(1)} className="text-[30px] leading-[1.1] sm:text-[40px] md:text-[46px]">{site.hero.title}</motion.h1>
+          <motion.h1 {...rise(1)} className="text-[28px] uppercase leading-[1.1] sm:text-[38px] md:text-[48px]">{site.hero.title}</motion.h1>
           <motion.p {...rise(2)} className="mt-5 max-w-[520px] text-lg text-fg/75">{site.hero.lead}</motion.p>
-          <motion.div {...rise(3)} className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <a href={`tel:${site.phoneHref}`} className={cn(button({ variant: "ghost", size: "lg" }), "max-md:hidden")}>
-              <Phone size={18} aria-hidden /> {site.phone}
-            </a>
-          </motion.div>
-          <motion.div {...rise(4)} className="mt-5 max-w-[520px]">
+          <motion.div {...rise(4)} className="mt-7 max-w-[520px]">
             <CallbackForm />
           </motion.div>
         </div>

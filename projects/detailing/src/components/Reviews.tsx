@@ -5,7 +5,7 @@ import { Heading, Section } from "./ui";
 export function Reviews() {
   return (
     <Section>
-      <Heading kicker="Отзывы" title="Что говорят клиенты" />
+      <Heading title="Что говорят клиенты" />
       <ul className="grid gap-5 md:grid-cols-3">
         {site.reviews.map((r) => (
           <li key={r.name} className="flex flex-col rounded-[var(--radius-card)] border border-line bg-surface p-7">

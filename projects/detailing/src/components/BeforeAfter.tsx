@@ -12,7 +12,7 @@ export function BeforeAfter() {
     <Section id="works">
       <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.5fr] lg:gap-14">
         <div>
-          <Heading kicker="Работы" title={ba.title} text={ba.text} className="mb-8 md:mb-8" />
+          <Heading title={ba.title} text={ba.text} className="mb-8 md:mb-8" />
           <ul className="mb-8 space-y-3">
             {ba.facts.map((f) => (
               <li key={f} className="flex gap-3 text-[15px]">
@@ -28,8 +28,8 @@ export function BeforeAfter() {
           <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
             <Image src="/images/before.jpg" alt="Автомобиль до работы" fill sizes="(min-width:1024px) 700px, 100vw" className="object-cover" />
           </div>
-          <span className="absolute left-4 top-4 rounded-full bg-bg/80 px-3 py-1 text-xs font-semibold backdrop-blur">До</span>
-          <span className="absolute right-4 top-4 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-ink">После</span>
+          <span className="absolute left-4 top-4 rounded-lg bg-bg/80 px-3 py-1 text-xs font-semibold backdrop-blur">До</span>
+          <span className="absolute right-4 top-4 rounded-lg bg-accent px-3 py-1 text-xs font-semibold text-accent-ink">После</span>
           <input
             type="range" min={0} max={100} value={pos} onChange={(e) => setPos(+e.target.value)}
             aria-label="Сравнить до и после" className="ba-range absolute inset-0 z-10"

@@ -6,6 +6,7 @@
 
 export type Service = {
   slug: string;
+  cat: string;
   title: string;
   text: string;
   from: number; // цена "от", ₽
@@ -46,13 +47,21 @@ export const site = {
 
   // --- Услуги ---
   services: [
-    { slug: "wash", title: "Мойка и уход", text: "Бесконтактная мойка, чистка дисков и стёкол, обработка пластика.", from: 2500, image: "/images/service-wash.jpg" },
-    { slug: "polish", title: "Полировка кузова", text: "Убираем царапины и потёртости, возвращаем глубину цвета.", from: 12000, image: "/images/service-polish.jpg" },
-    { slug: "ceramic", title: "Керамическое покрытие", text: "Защита краски на 2 до 5 лет. Грязь и вода стекают сами.", from: 35000, image: "/images/service-ceramic.jpg" },
-    { slug: "interior", title: "Химчистка салона", text: "Чистим сиденья, потолок, ковры и кожу. Убираем запахи.", from: 9000, image: "/images/service-interior.jpg" },
-    { slug: "film", title: "Защитная плёнка", text: "Оклеиваем капот, бампер и пороги. Сколы больше не страшны.", from: 45000, image: "/images/service-film.jpg" },
-    { slug: "presale", title: "Подготовка к продаже", text: "Мойка, полировка и чистка салона. Автомобиль продаётся быстрее и дороже.", from: 15000, image: "/images/service-presale.jpg" },
+    { slug: "wash", cat: "Кузов", title: "Мойка и уход", text: "Бесконтактная мойка, чистка дисков и стёкол, обработка пластика.", from: 2500, image: "/images/service-wash.jpg" },
+    { slug: "polish", cat: "Кузов", title: "Полировка кузова", text: "Убираем царапины и потёртости, возвращаем глубину цвета.", from: 12000, image: "/images/service-polish.jpg" },
+    { slug: "ceramic", cat: "Защита", title: "Керамическое покрытие", text: "Защита краски на 2 до 5 лет. Грязь и вода стекают сами.", from: 35000, image: "/images/service-ceramic.jpg" },
+    { slug: "interior", cat: "Салон", title: "Химчистка салона", text: "Чистим сиденья, потолок, ковры и кожу. Убираем запахи.", from: 9000, image: "/images/service-interior.jpg" },
+    { slug: "film", cat: "Защита", title: "Защитная плёнка", text: "Оклеиваем капот, бампер и пороги. Сколы больше не страшны.", from: 45000, image: "/images/service-film.jpg" },
+    { slug: "presale", cat: "Комплекс", title: "Подготовка к продаже", text: "Мойка, полировка и чистка салона. Автомобиль продаётся быстрее и дороже.", from: 15000, image: "/images/service-presale.jpg" },
   ] satisfies Service[],
+
+  serviceCats: ["Все", "Кузов", "Салон", "Защита", "Комплекс"],
+
+  // --- Как добраться ---
+  directions: [
+    { tab: "От метро", text: "Станция «Примерная», выход 2. Дальше 7 минут пешком вдоль парка, вход со двора, вывеска над боксами." },
+    { tab: "На машине", text: "Заезд с улицы Примерной, шлагбаум откроем по звонку. Бесплатная парковка на 10 мест у входа." },
+  ],
 
   // --- Цены по классу автомобиля ---
   carClasses: ["Седан", "Кроссовер", "Внедорожник"],

@@ -27,13 +27,13 @@ export function CallbackForm() {
     );
 
   return (
-    <form onSubmit={submit} noValidate className="rounded-2xl border border-line bg-bg/60 p-3 backdrop-blur-md">
+    <form onSubmit={submit} noValidate className="rounded-3xl border border-line bg-bg/60 p-3 backdrop-blur-md">
       <label htmlFor="cb-phone" className="mb-2 block px-1 text-sm text-muted">{site.hero.callbackNote}</label>
       <div className="flex flex-col gap-2 sm:flex-row">
         <input
           id="cb-phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="+7 (___) ___-__-__"
           value={phone} onChange={(e) => setPhone(e.target.value)} aria-invalid={!!err} aria-describedby="cb-err"
-          className="h-12 min-w-0 flex-1 rounded-full border border-white/15 bg-surface px-5 text-base placeholder:text-muted/70 focus:border-accent focus:outline-none"
+          className="h-12 min-w-0 flex-1 rounded-2xl border border-white/10 bg-surface-2 px-5 text-base placeholder:text-muted/70 focus:border-accent focus:outline-none"
         />
         <button type="submit" disabled={state === "busy"} className={button({ size: "md" })}>
           {state === "busy" ? <Loader2 className="animate-spin" size={18} aria-hidden /> : null} Перезвоните мне

@@ -6,12 +6,13 @@ import { cn } from "@/lib/utils";
 import { button, Heading, Section } from "./ui";
 import { phoneOk, sendLead } from "@/lib/lead";
 
-const field = "h-12 w-full rounded-xl border border-white/15 bg-surface px-4 text-base placeholder:text-muted/70 focus:border-accent focus:outline-none";
+const field = "h-12 w-full rounded-2xl border border-white/10 bg-surface-2 px-4 text-base placeholder:text-muted/70 focus:border-accent focus:outline-none";
 
 export function Booking() {
   const [f, setF] = useState({ name: "", phone: "", service: "", car: "" });
   const [state, setState] = useState<"idle" | "busy" | "done" | "error">("idle");
   const [err, setErr] = useState("");
+  const [dir, setDir] = useState(0);
 
   useEffect(() => {
     const on = (e: Event) => {
@@ -37,7 +38,7 @@ export function Booking() {
     <Section id="booking">
       <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
         <div className="rounded-[var(--radius-card)] border border-line bg-surface p-6 md:p-10">
-          <Heading kicker="Запись" title="Запишитесь на удобное время" text="Перезвоним в течение 10 минут и подберём время." className="mb-8 md:mb-8" />
+          <Heading title="Запишитесь на удобное время" text="Перезвоним в течение 10 минут и подберём время." className="mb-8 md:mb-8" />
           {state === "done" ? (
             <p role="status" className="flex items-start gap-3 rounded-2xl border border-accent/40 bg-accent/10 p-5">
               <Check className="mt-0.5 shrink-0 text-accent" aria-hidden /> Заявка принята. Мы перезвоним в течение 10 минут.
@@ -75,14 +76,23 @@ export function Booking() {
           )}
         </div>
 
-        <div id="contacts" className="flex flex-col justify-between gap-8 rounded-[var(--radius-card)] border border-line bg-gradient-to-br from-surface-2 to-surface p-6 md:p-10">
+        <div id="contacts" className="flex flex-col justify-between gap-8 rounded-[var(--radius-card)] border border-line bg-surface p-6 md:p-10">
           <div>
-            <p className="mb-3 text-sm font-semibold tracking-wide text-accent uppercase">Контакты</p>
+            <p className="mb-3 text-lg font-semibold text-muted">Контакты</p>
             <a href={`tel:${site.phoneHref}`} className="font-display text-2xl font-semibold hover:text-accent md:text-4xl">{site.phone}</a>
             <ul className="mt-8 space-y-5 text-[15px]">
               <li className="flex gap-3"><MapPin className="mt-0.5 shrink-0 text-accent" size={20} aria-hidden /><span>{site.address}<br /><a href={site.mapUrl} target="_blank" rel="noopener" className="text-muted underline underline-offset-4 hover:text-fg">Построить маршрут</a></span></li>
               <li className="flex gap-3"><Clock className="mt-0.5 shrink-0 text-accent" size={20} aria-hidden />{site.hours}</li>
             </ul>
+          </div>
+          <div>
+            <p className="mb-3 text-lg font-semibold">Как добраться</p>
+            <div role="tablist" aria-label="Как добраться" className="mb-3 grid grid-cols-2 gap-3">
+              {site.directions.map((d, i) => (
+                <button key={d.tab} role="tab" aria-selected={dir === i} onClick={() => setDir(i)} className={cn("h-12 rounded-2xl text-[15px] font-medium transition", dir === i ? "bg-accent text-accent-ink" : "bg-surface-2 hover:bg-white/10")}>{d.tab}</button>
+              ))}
+            </div>
+            <p role="tabpanel" className="text-[15px] leading-relaxed text-muted">{site.directions[dir].text}</p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
             <a href={`tel:${site.phoneHref}`} className={cn(button({ size: "lg" }), "flex-1")}><Phone size={18} aria-hidden /> Позвонить</a>

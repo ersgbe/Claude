@@ -3,17 +3,17 @@
 @import "@fontsource-variable/unbounded";
 
 @theme {
-  --color-bg: #0a0b0d;
-  --color-surface: #121418;
-  --color-surface-2: #1a1d22;
+  --color-bg: #0a0a0a;
+  --color-surface: #141414;
+  --color-surface-2: #232323;
   --color-line: rgb(255 255 255 / 0.09);
   --color-fg: #f3f4f6;
-  --color-muted: #9ba1ab;
-  --color-accent: #c8ff3d;
-  --color-accent-ink: #0b0d02;
+  --color-muted: #8f8f8f;
+  --color-accent: #ffe0a3;
+  --color-accent-ink: #1a1408;
   --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Unbounded Variable", "Manrope Variable", ui-sans-serif, sans-serif;
-  --radius-card: 20px;
+  --radius-card: 24px;
 }
 
 html { scroll-behavior: smooth; scroll-padding-top: 88px; background: var(--color-bg); }

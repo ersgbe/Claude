@@ -6,7 +6,7 @@ export function Faq() {
   return (
     <Section id="faq" className="bg-surface/50">
       <div className="grid gap-10 lg:grid-cols-[1fr_1.6fr]">
-        <Heading kicker="Вопросы" title="Частые вопросы" text="Не нашли ответ? Позвоните, ответим сразу." />
+        <Heading title="Частые вопросы" text="Не нашли ответ? Позвоните, ответим сразу." />
         <div>
           {site.faq.map((f) => (
             <details key={f.q} className="group border-b border-line">

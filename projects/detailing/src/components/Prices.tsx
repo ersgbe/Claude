@@ -8,12 +8,12 @@ export function Prices() {
   const [cls, setCls] = useState(0);
   return (
     <Section id="prices" className="bg-surface/50">
-      <Heading kicker="Цены" title="Сколько это стоит" text="Выберите класс автомобиля. Цена указана от. Точную сумму назовём до начала работ." />
-      <div role="tablist" aria-label="Класс автомобиля" className="mb-6 inline-flex w-full max-w-md rounded-full border border-line bg-bg p-1 sm:w-auto">
+      <Heading title="Сколько это стоит" text="Выберите класс автомобиля. Цена указана от. Точную сумму назовём до начала работ." />
+      <div role="tablist" aria-label="Класс автомобиля" className="mb-6 flex gap-3 overflow-x-auto [scrollbar-width:none]">
         {site.carClasses.map((c, i) => (
           <button
             key={c} role="tab" aria-selected={cls === i} onClick={() => setCls(i)}
-            className={cn("h-11 flex-1 rounded-full px-4 text-[15px] font-semibold transition sm:flex-none sm:px-6", cls === i ? "bg-accent text-accent-ink" : "text-muted hover:text-fg")}
+            className={cn("h-14 flex-1 rounded-2xl px-6 text-base font-medium transition sm:flex-none sm:px-8", cls === i ? "bg-accent text-accent-ink" : "bg-surface-2 text-fg hover:bg-white/10")}
           >
             {c}
           </button>
