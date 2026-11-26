@@ -4,7 +4,7 @@
 
 ## Структура
 - `projects/<имя>/` — каждый проект в своей папке (сайты деплоятся на Vercel).
-- `.claude/skills/` — скиллы: `ui-ux-pro-max`, `shadcn`, `frontend-design`, `impeccable`, `design-taste-frontend` (Taste), `motion-react`.
+- `.claude/skills/` — скиллы: `ui-ux-pro-max`, `shadcn`, `frontend-design`, `impeccable`, `design-taste-frontend` (Taste), `motion-react`, SEO (`seo*`, `geo*`, `schema`, `programmatic-seo`), блог (`blog*`), текст (`humanizer`, `plain-writing`, `concise-writing`).
 - `.mcp.json` — MCP-серверы: `shadcn`, `vercel`.
 
 ## Правила
@@ -18,3 +18,20 @@
 - Для каждого сайта Claude кладёт заглушки в `projects/<имя>/public/images/` и пишет `projects/<имя>/IMAGES.md` по шаблону `templates/IMAGES.md`: имя файла, размер, пропорции, готовый промпт.
 - Codex пушит картинки в ветку `codex/images-<имя>`. Claude мерджит её в рабочую ветку, проверяет сайт и деплоит на Vercel.
 - Пока Codex не прислал картинки, сайт должен нормально выглядеть на заглушках.
+
+## Обязательное применение скиллов
+Все скиллы из `.claude/skills/` используем везде, где они подходят, без напоминаний от пользователя. Перед задачей определи подходящие скиллы и вызови их через Skill.
+
+| Когда | Скиллы |
+|-------|--------|
+| Любой сайт, страница, компонент, редизайн | `ui-ux-pro-max`, `frontend-design`, `design-taste-frontend`, `impeccable`; компоненты через `shadcn` + shadcn MCP |
+| Анимации и переходы | `motion-react` |
+| Любой публичный сайт (SEO-основа) | `seo` (+ `seo-page`, `seo-technical`, `seo-sitemap`), `schema` / `seo-schema` для JSON-LD |
+| Видимость в AI-поиске (ChatGPT, Perplexity, AI Overviews) | `geo`, `seo-geo`, `geo-llmstxt`, `geo-crawlers` |
+| Много однотипных страниц (города, каталоги, сравнения) | `programmatic-seo` / `seo-programmatic` |
+| Статьи и блог | `blog` и подскиллы `blog-*` (`blog-write`, `blog-outline`, `blog-seo-check`, `blog-schema` и др.) |
+| Любой текст сайта и сообщения (тексты страниц, тексты для пользователя, описания) | `plain-writing` и `concise-writing`; готовый текст всегда прогоняем через `humanizer` |
+
+Примечания:
+- Хук-проверка `concise-writing` (`scripts/concise_check.py`) не подключена, скилл используется как руководство по стилю. Тексты на русском пишем простым языком, короткими предложениями.
+- Аудиторные скиллы (`seo-audit`, `geo-audit`, `blog-audit`) запускаем перед публикацией сайта на Vercel.
