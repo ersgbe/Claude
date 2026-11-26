@@ -45,7 +45,7 @@ export function Gallery({ photos, cols = "[--n:2] md:[--n:3]" }: { photos: strin
             className="fixed inset-0 z-[70] flex flex-col bg-bg/97 backdrop-blur-xl"
             onClick={() => setOpen(null)}
           >
-            <div className="wrap flex h-[72px] shrink-0 items-center justify-between">
+            <div className="wrap flex h-[var(--hdr)] shrink-0 items-end justify-between pb-2">
               <span className="tnum text-[14px] text-muted">{open + 1} / {n}</span>
               <button type="button" aria-label="Закрыть" autoFocus onClick={() => setOpen(null)} className={cn(tile, "h-12 w-12")}><X size={20} aria-hidden /></button>
             </div>

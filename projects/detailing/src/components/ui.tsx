@@ -67,7 +67,7 @@ export function Crumbs({ items }: { items: { label: string; href?: string }[] })
 // Шапка внутренней страницы: крошки, крупный заголовок, короткий текст, полоса света
 export function PageHero({ crumbs, title, text, children }: { crumbs: { label: string; href?: string }[]; title: string; text?: string; children?: React.ReactNode }) {
   return (
-    <section className="relative overflow-hidden pt-[104px] md:pt-[136px]">
+    <section className="relative overflow-hidden pt-[calc(104px+env(safe-area-inset-top))] md:pt-[136px]">
       <div className="wrap">
         <Crumbs items={crumbs} />
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-12">

@@ -27,7 +27,7 @@ export function Hero() {
       </motion.picture>
       <div aria-hidden className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(9_9_8/0.55)_0%,rgb(9_9_8/0)_22%,rgb(9_9_8/0.15)_45%,rgb(9_9_8/0.92)_78%,#090908_100%)] md:bg-[linear-gradient(90deg,rgb(9_9_8/0.88)_0%,rgb(9_9_8/0.4)_50%,rgb(9_9_8/0)_75%),linear-gradient(0deg,#090908_0%,rgb(9_9_8/0)_40%)]" />
 
-      <div className="wrap pb-[104px] pt-28 md:pb-14">
+      <div className="wrap pb-[104px] pt-[calc(112px+env(safe-area-inset-top))] md:pb-14">
         <h1 className="uppercase">
           <span style={{ animationDelay: "0.15s" }} className="rise block text-[clamp(36px,11vw,120px)] leading-[0.98] tracking-[-0.01em]">{site.hero.title}</span>
           <span style={{ animationDelay: "0.3s" }} className="rise mt-3 block text-[13px] font-medium tracking-[0.02em] text-accent sm:text-[15px] md:mt-5 md:text-[18px]">{site.hero.titleSmall}</span>

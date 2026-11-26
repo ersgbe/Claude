@@ -23,11 +23,13 @@
   --max: 1280px;
   /* отступ, при котором ленты начинаются ровно по краю сетки */
   --edge: max(var(--pad), calc((100% - var(--max)) / 2 + var(--pad)));
+  /* Высота шапки вместе с вырезом экрана (в приложении на весь экран верх уходит под статус-бар) */
+  --hdr: calc(72px + env(safe-area-inset-top));
 }
 @media (min-width: 640px) { :root { --pad: 24px; } }
 @media (min-width: 1024px) { :root { --pad: 40px; } }
 
-html { scroll-behavior: smooth; scroll-padding-top: 80px; background: var(--color-bg); color-scheme: dark; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(80px + env(safe-area-inset-top)); background: var(--color-bg); color-scheme: dark; }
 body {
   background: var(--color-bg);
   color: var(--color-fg);
@@ -101,3 +103,10 @@ details[open] .faq-plus { transform: rotate(45deg); }
 /* Переход между страницами: новая страница сразу сверху и мягко появляется */
 @keyframes page-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 .page-in { animation: page-in 0.45s var(--ease-out-expo) both; }
+
+/* Режим приложения: без подсветки касаний, без резинки при прокрутке, без выделения интерфейса */
+html { -webkit-text-size-adjust: 100%; }
+html[data-app] { overscroll-behavior-y: none; }
+html[data-app] body { -webkit-touch-callout: none; }
+html[data-app] a, html[data-app] button { -webkit-user-select: none; user-select: none; }
+html[data-app] img { -webkit-user-drag: none; }

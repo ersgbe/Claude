@@ -3,7 +3,7 @@ import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
 import { Calculator } from "@/components/Calculator";
 import { Works } from "@/components/Works";
-import { Benefits } from "@/components/Benefits";
+import { Steps } from "@/components/Steps";
 import { Packs } from "@/components/Packs";
 import { JsonLd } from "@/components/ui";
 import { Reviews } from "@/components/Reviews";
@@ -54,7 +54,7 @@ export default function Page() {
       <Calculator />
       <Works limit={4} />
       <Packs id="bundles" items={site.bundles} title="Комплексы" text="Несколько услуг за один визит. Выходит дешевле, чем по отдельности." />
-      <Benefits />
+      <Steps />
       <Reviews />
       <Booking />
       <Faq />
