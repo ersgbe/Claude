@@ -4,7 +4,7 @@
 
 ## Структура
 - `projects/<имя>/` — каждый проект в своей папке (сайты деплоятся на Vercel).
-- `.claude/skills/` — скиллы: `ui-ux-pro-max`, `shadcn`, `frontend-design`, `impeccable`, `design-taste-frontend` (Taste), `motion-react`, SEO (`seo*`, `geo*`, `schema`, `programmatic-seo`), блог (`blog*`), текст (`humanizer`, `plain-writing`, `concise-writing`), `token-efficiency`, `minimal-execution`, `smart-file-reading`, `selective-testing`, видео (`watch` — ролики по ссылке, `video-understand` — локальные файлы: кадры + речь с таймкодами).
+- `.claude/skills/` — скиллы: `ui-ux-pro-max`, `shadcn`, `frontend-design`, `impeccable`, `design-taste-frontend` (Taste), `motion-react`, Emil Kowalski (`emil-design-eng`, `animate`, `review-animations`, `improve-animations`, `gestures`, `choreograph` и др.), SEO (`seo*`, `geo*`, `schema`, `programmatic-seo`), блог (`blog*`), текст (`humanizer`, `plain-writing`, `concise-writing`), `token-efficiency`, `minimal-execution`, `smart-file-reading`, `selective-testing`, видео (`watch` — ролики по ссылке, `video-understand` — локальные файлы: кадры + речь с таймкодами).
 - `.mcp.json` — MCP-серверы: `shadcn`, `vercel`. Коннектор OpenRush (SEO-данные, аккаунт claude.ai) подключён вне репозитория: используем с `seo`, `geo`, `blog` для ключей, конкурентов, ссылок, аудитов; платные вызовы (кредиты) делаем осознанно.
 
 ## Правила
@@ -25,7 +25,7 @@
 | Когда | Скиллы |
 |-------|--------|
 | Любой сайт, страница, компонент, редизайн | `ui-ux-pro-max`, `frontend-design`, `design-taste-frontend`, `impeccable`; компоненты через `shadcn` + shadcn MCP |
-| Анимации и переходы | `motion-react` |
+| Анимации и переходы | `motion-react` + Emil Kowalski (`emil-design-eng`, `animate`, `review-animations`, `animation-performance`) |
 | Любой публичный сайт (SEO-основа) | `seo` (+ `seo-page`, `seo-technical`, `seo-sitemap`), `schema` / `seo-schema` для JSON-LD |
 | Видимость в AI-поиске (ChatGPT, Perplexity, AI Overviews) | `geo`, `seo-geo`, `geo-llmstxt`, `geo-crawlers` |
 | Много однотипных страниц (города, каталоги, сравнения) | `programmatic-seo` / `seo-programmatic` |
