@@ -48,3 +48,10 @@
 - Всё, что появляется в репозитории (файлы от пользователя, Codex, загрузки через GitHub), не удалять, не перезаписывать и не переносить без прямой просьбы.
 - Перед пушем сначала `git fetch` и слияние (merge), без `--force` и без перезаписи истории.
 - Чужие и новые файлы читаем и учитываем как базу знаний (например, `threads-knowledge-base/`), правим только по просьбе.
+
+## SEO-работа (всегда комбинируем)
+Любая SEO-задача (аудит, ключи, конкуренты, ссылки, тексты для поиска, AI-видимость) выполняется так:
+1. Данные: коннектор OpenRush (`mcp__OpenRush__*`; начинаем с `describe_capabilities`). Ключи — `research_keywords`, конкуренты — `discover_competitors`, пробелы — `compare_keyword_coverage`, ссылки — `inspect_backlinks`/`compare_backlink_gap`, аудит — `audit_site`, AI-ответы — `inspect_ai_visibility`/`discover_ai_citations`.
+2. Методика: скиллы `seo` (+ `seo-audit`, `seo-page`, `seo-technical`, `seo-content`, `seo-schema`, `seo-sitemap`), `geo*` для AI-поиска, `schema`, `programmatic-seo`, `blog*` для статей.
+3. Тексты: `plain-writing`, `concise-writing`, `humanizer`.
+4. Экономия: платные вызовы OpenRush делаем по делу, без повторов; результаты сохраняем в репозиторий (`projects/<имя>/seo/`), чтобы не платить дважды.
