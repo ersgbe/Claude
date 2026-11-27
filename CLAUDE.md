@@ -4,7 +4,7 @@
 
 ## Структура
 - `projects/<имя>/` — каждый проект в своей папке (сайты деплоятся на Vercel).
-- `.claude/skills/` — скиллы: `ui-ux-pro-max`, `shadcn`, `frontend-design`, `impeccable`, `design-taste-frontend` (Taste), `motion-react`, SEO (`seo*`, `geo*`, `schema`, `programmatic-seo`), блог (`blog*`), текст (`humanizer`, `plain-writing`, `concise-writing`), `token-efficiency`, `minimal-execution`, `smart-file-reading`, `selective-testing`.
+- `.claude/skills/` — скиллы: `ui-ux-pro-max`, `shadcn`, `frontend-design`, `impeccable`, `design-taste-frontend` (Taste), `motion-react`, SEO (`seo*`, `geo*`, `schema`, `programmatic-seo`), блог (`blog*`), текст (`humanizer`, `plain-writing`, `concise-writing`), `token-efficiency`, `minimal-execution`, `smart-file-reading`, `selective-testing`, видео (`watch` — ролики по ссылке, `video-understand` — локальные файлы: кадры + речь с таймкодами).
 - `.mcp.json` — MCP-серверы: `shadcn`, `vercel`.
 
 ## Правила
@@ -42,3 +42,4 @@
 - Не больше одного вопроса в конце, только если без ответа нельзя продолжить.
 - Скиллы вызываем на каждой подходящей задаче, не только по просьбе. Хук в `.claude/settings.json` напоминает об этом при каждом сообщении.
 - `token-efficiency`, `minimal-execution`, `smart-file-reading`, `selective-testing` применяем всегда: экономим токены, делаем минимум действий, читаем только нужные участки файлов, тестируем только изменённое.
+- Видео: если пользователь присылает ролик (запись экрана с правками) или ссылку на видео, разбираем его скиллами `watch` / `video-understand`. Нужны ffmpeg и Whisper.
