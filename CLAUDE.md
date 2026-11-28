@@ -4,7 +4,7 @@
 
 ## Структура
 - `projects/<имя>/` — каждый проект в своей папке (сайты деплоятся на Vercel).
-- `.claude/skills/` — скиллы: `ui-ux-pro-max`, `shadcn`, `frontend-design`, `impeccable`, `design-taste-frontend` (Taste), `motion-react`, Emil Kowalski (`emil-design-eng`, `animate`, `review-animations`, `improve-animations`, `gestures`, `choreograph` и др.), SEO (`seo*`, `geo*`, `schema`, `programmatic-seo`), блог (`blog*`), текст (`humanizer`, `plain-writing`, `concise-writing`), `token-efficiency`, `minimal-execution`, `smart-file-reading`, `selective-testing`, видео (`watch` — ролики по ссылке, `video-understand` — локальные файлы: кадры + речь с таймкодами).
+- `.claude/skills/` — скиллы: `ui-ux-pro-max`, `shadcn`, `frontend-design`, `impeccable`, `design-taste-frontend` (Taste), `motion-react`, Emil Kowalski (`emil-design-eng`, `animate`, `review-animations`, `improve-animations`, `gestures`, `choreograph` и др.), SEO (`seo*`, `geo*`, `schema`, `programmatic-seo`), блог (`blog*`), безопасность (`owasp-security`), текст (`humanizer`, `plain-writing`, `concise-writing`), `token-efficiency`, `minimal-execution`, `smart-file-reading`, `selective-testing`, видео (`watch` — ролики по ссылке, `video-understand` — локальные файлы: кадры + речь с таймкодами).
 - `.mcp.json` — MCP-серверы: `shadcn`, `vercel`. Коннектор OpenRush (SEO-данные, аккаунт claude.ai) подключён вне репозитория: используем с `seo`, `geo`, `blog` для ключей, конкурентов, ссылок, аудитов; платные вызовы (кредиты) делаем осознанно.
 
 ## Правила
@@ -30,6 +30,7 @@
 | Видимость в AI-поиске (ChatGPT, Perplexity, AI Overviews) | `geo`, `seo-geo`, `geo-llmstxt`, `geo-crawlers` |
 | Много однотипных страниц (города, каталоги, сравнения) | `programmatic-seo` / `seo-programmatic` |
 | Статьи и блог | `blog` и подскиллы `blog-*` (`blog-write`, `blog-outline`, `blog-seo-check`, `blog-schema` и др.) |
+| Любой код: формы, API, авторизация, платежи, загрузка файлов, зависимости, перед деплоем | `owasp-security` (при написании и проверке кода; перед публикацией сайта обязательный обзор безопасности) |
 | Любой текст сайта и сообщения (тексты страниц, тексты для пользователя, описания) | `plain-writing` и `concise-writing`; готовый текст всегда прогоняем через `humanizer` |
 
 Примечания:
@@ -55,3 +56,7 @@
 2. Методика: скиллы `seo` (+ `seo-audit`, `seo-page`, `seo-technical`, `seo-content`, `seo-schema`, `seo-sitemap`), `geo*` для AI-поиска, `schema`, `programmatic-seo`, `blog*` для статей.
 3. Тексты: `plain-writing`, `concise-writing`, `humanizer`.
 4. Экономия: платные вызовы OpenRush делаем по делу, без повторов; результаты сохраняем в репозиторий (`projects/<имя>/seo/`), чтобы не платить дважды.
+
+## Новые скиллы (всегда)
+- Любой скилл, который пользователь добавляет, сразу вписываем в «Структура» и в таблицу «Обязательное применение скиллов» и применяем сами, где он подходит, без напоминаний.
+- При добавлении скилла проверяем его код перед установкой (хуки, скрипты, `curl | sh`), хуки автозапуска не подключаем без согласия.
